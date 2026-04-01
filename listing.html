@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Listings – Stackly</title>
+  <meta name="description" content="Browse all property listings. Filter by price, location, type, and bedrooms. Find your perfect home at Stackly.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .filter-section { padding: 1.5rem; background:white; border:1px solid var(--border); border-radius:var(--radius-lg); }
+    .filter-section h4 { font-size:0.875rem; text-transform:uppercase; letter-spacing:1px; color:var(--text-muted); margin-bottom:1rem; }
+    .filter-section + .filter-section { margin-top:1.5rem; }
+    .range-labels { display:flex; justify-content:space-between; font-size:0.875rem; color:var(--text-muted); margin-top:0.5rem; }
+    input[type=range] { width:100%; accent-color:var(--primary); }
+    .checkbox-group { display:flex; flex-direction:column; gap:0.75rem; }
+    .checkbox-group label { display:flex; align-items:center; gap:0.5rem; cursor:pointer; font-size:0.9rem; }
+    .sort-select { border:1px solid var(--border); border-radius:var(--radius-md); padding:0.5rem 1rem; font-family:inherit; color:var(--secondary); }
+    .listings-count { color:var(--text-muted); font-size:0.9rem; }
+  </style>
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="container header-container">
+    <a href="index.html" class="logo"><img src="img/logo.webp" alt="Stackly" style="height:44px; width:auto;"></a>
+    <nav><ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="listing.html" class="active">Listings</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li class="mobile-only"><a href="login.html" class="btn btn-outline">Log In</a></li>
+      <li class="mobile-only"><a href="create-listing.html" class="btn btn-primary"><i class="fas fa-plus"></i> List Property</a></li>
+    </ul></nav>
+    <div class="nav-actions">
+      <a href="login.html" class="btn btn-outline">Log In</a>
+      <a href="create-listing.html" class="btn btn-primary"><i class="fas fa-plus"></i> List Property</a>
+    </div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+  </div>
+</header>
+
+<div class="page-header">
+  <div class="container">
+    <h1>Property Listings</h1>
+  </div>
+</div>
+
+<!-- Quick search bar -->
+<div style="background:var(--primary); padding:1.5rem 0;">
+  <div class="container">
+    <form style="display:flex; gap:1rem; flex-wrap:wrap;">
+      <input type="text" placeholder="Search by keyword…" class="form-control" style="flex:2; min-width:200px;">
+      <select class="form-control" style="flex:1; min-width:140px;">
+        <option>All Types</option>
+        <option>Apartment</option>
+        <option>Villa</option>
+        <option>House</option>
+        <option>Plot</option>
+        <option>Commercial</option>
+      </select>
+      <select class="form-control" style="flex:1; min-width:140px;">
+        <option>All Locations</option>
+        <option>New York</option>
+        <option>Los Angeles</option>
+        <option>Miami</option>
+        <option>Chicago</option>
+        <option>Houston</option>
+      </select>
+      <button class="btn" style="background:white; color:var(--primary); font-weight:600;">
+        <i class="fas fa-search"></i> Search
+      </button>
+    </form>
+  </div>
+</div>
+
+<main class="section">
+  <div class="container">
+    <div class="listing-layout">
+
+      <!-- Sidebar Filters -->
+      <aside>
+        <div class="filter-section">
+          <h4>Price Range</h4>
+          <input type="range" id="priceRange" min="50000" max="5000000" value="2000000" step="50000">
+          <div class="range-labels">
+            <span>$50K</span><span id="priceVal">$2,000,000</span>
+          </div>
+        </div>
+        <div class="filter-section">
+          <h4>Property Type</h4>
+          <div class="checkbox-group">
+            <label><input type="checkbox" checked> Apartment</label>
+            <label><input type="checkbox" checked> Villa</label>
+            <label><input type="checkbox" checked> House</label>
+            <label><input type="checkbox"> Plot</label>
+            <label><input type="checkbox"> Commercial</label>
+          </div>
+        </div>
+        <div class="filter-section">
+          <h4>Bedrooms</h4>
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <button class="btn btn-primary" style="padding:0.5rem 1rem; font-size:0.875rem;" onclick="setBed(this)">Any</button>
+            <button class="btn btn-outline" style="padding:0.5rem 1rem; font-size:0.875rem;" onclick="setBed(this)">1+</button>
+            <button class="btn btn-outline" style="padding:0.5rem 1rem; font-size:0.875rem;" onclick="setBed(this)">2+</button>
+            <button class="btn btn-outline" style="padding:0.5rem 1rem; font-size:0.875rem;" onclick="setBed(this)">3+</button>
+            <button class="btn btn-outline" style="padding:0.5rem 1rem; font-size:0.875rem;" onclick="setBed(this)">4+</button>
+          </div>
+        </div>
+        <div class="filter-section">
+          <h4>Status</h4>
+          <div class="checkbox-group">
+            <label><input type="checkbox" checked> For Sale</label>
+            <label><input type="checkbox" checked> For Rent</label>
+          </div>
+        </div>
+        <div class="filter-section">
+          <h4>Amenities</h4>
+          <div class="checkbox-group">
+            <label><input type="checkbox"> Swimming Pool</label>
+            <label><input type="checkbox"> Parking</label>
+            <label><input type="checkbox"> WiFi</label>
+            <label><input type="checkbox"> Gym</label>
+            <label><input type="checkbox"> Pet Friendly</label>
+          </div>
+        </div>
+        <a href="404.html" class="btn btn-primary" style="width:100%; margin-top:1.5rem; display:block; text-align:center;">Apply Filters</a>
+        <a href="404.html" class="btn btn-outline" style="width:100%; margin-top:0.75rem; display:block; text-align:center;">Reset All</a>
+      </aside>
+
+      <!-- Listing Grid -->
+      <div>
+        <div class="listing-topbar">
+          <p class="listings-count">Showing <strong>12</strong> of 320 properties</p>
+          <select class="sort-select" id="sortSelect">
+            <option>Sort: Newest</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+            <option>Most Popular</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-3" id="listingGrid">
+
+          <div class="property-card">
+            <div class="property-img-wrapper">
+              <div class="property-badges"><span class="badge badge-success">For Sale</span></div>
+              <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?fm=webp&fit=crop&w=800&q=30" alt="Property" loading="lazy">
+              <div class="property-price">$1,250,000</div>
+              <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="property-details">
+              <p class="property-type">Villa</p>
+              <h3 class="property-title"><a href="property.html">Modern Coastal Villa</a></h3>
+              <p class="property-location"><i class="fas fa-map-marker-alt"></i> Los Angeles, CA</p>
+              <div class="property-amenities">
+                <div><i class="fas fa-bed"></i> 4</div>
+                <div><i class="fas fa-bath"></i> 3</div>
+                <div><i class="fas fa-ruler-combined"></i> 3,400 sqft</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="property-card">
+            <div class="property-img-wrapper">
+              <div class="property-badges"><span class="badge badge-primary" style="background:#f59e0b;">For Rent</span></div>
+              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?fm=webp&fit=crop&w=800&q=30" alt="Property" loading="lazy">
+              <div class="property-price">$5,200<span>/mo</span></div>
+              <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="property-details">
+              <p class="property-type">Apartment</p>
+              <h3 class="property-title"><a href="property.html">Sky-High Luxury Apt</a></h3>
+              <p class="property-location"><i class="fas fa-map-marker-alt"></i> New York, NY</p>
+              <div class="property-amenities">
+                <div><i class="fas fa-bed"></i> 3</div>
+                <div><i class="fas fa-bath"></i> 2</div>
+                <div><i class="fas fa-ruler-combined"></i> 2,100 sqft</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="property-card">
+            <div class="property-img-wrapper">
+              <div class="property-badges"><span class="badge badge-success">For Sale</span></div>
+              <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?fm=webp&fit=crop&w=800&q=30" alt="Property" loading="lazy">
+              <div class="property-price">$875,000</div>
+              <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="property-details">
+              <p class="property-type">House</p>
+              <h3 class="property-title"><a href="property.html">Waterfront Family Home</a></h3>
+              <p class="property-location"><i class="fas fa-map-marker-alt"></i> Miami, FL</p>
+              <div class="property-amenities">
+                <div><i class="fas fa-bed"></i> 5</div>
+                <div><i class="fas fa-bath"></i> 4</div>
+                <div><i class="fas fa-ruler-combined"></i> 4,800 sqft</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="property-card">
+            <div class="property-img-wrapper">
+              <div class="property-badges"><span class="badge badge-primary" style="background:#f59e0b;">For Rent</span></div>
+              <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?fm=webp&fit=crop&w=800&q=30" alt="Property" loading="lazy">
+              <div class="property-price">$2,800<span>/mo</span></div>
+              <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="property-details">
+              <p class="property-type">Apartment</p>
+              <h3 class="property-title"><a href="property.html">Downtown Studio Loft</a></h3>
+              <p class="property-location"><i class="fas fa-map-marker-alt"></i> Chicago, IL</p>
+              <div class="property-amenities">
+                <div><i class="fas fa-bed"></i> 1</div>
+                <div><i class="fas fa-bath"></i> 1</div>
+                <div><i class="fas fa-ruler-combined"></i> 780 sqft</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="property-card">
+            <div class="property-img-wrapper">
+              <div class="property-badges"><span class="badge badge-success">For Sale</span></div>
+              <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?fm=webp&fit=crop&w=800&q=30" alt="Property" loading="lazy">
+              <div class="property-price">$2,400,000</div>
+              <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="property-details">
+              <p class="property-type">Villa</p>
+              <h3 class="property-title"><a href="property.html">Grand Estate with Pool</a></h3>
+              <p class="property-location"><i class="fas fa-map-marker-alt"></i> Houston, TX</p>
+              <div class="property-amenities">
+                <div><i class="fas fa-bed"></i> 6</div>
+                <div><i class="fas fa-bath"></i> 5</div>
+                <div><i class="fas fa-ruler-combined"></i> 7,200 sqft</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="property-card">
+            <div class="property-img-wrapper">
+              <div class="property-badges"><span class="badge badge-primary" style="background:#f59e0b;">For Rent</span></div>
+              <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?fm=webp&fit=crop&w=800&q=30" alt="Property" loading="lazy">
+              <div class="property-price">$3,900<span>/mo</span></div>
+              <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="property-details">
+              <p class="property-type">Condo</p>
+              <h3 class="property-title"><a href="property.html">Modern City Condo</a></h3>
+              <p class="property-location"><i class="fas fa-map-marker-alt"></i> Miami, FL</p>
+              <div class="property-amenities">
+                <div><i class="fas fa-bed"></i> 2</div>
+                <div><i class="fas fa-bath"></i> 2</div>
+                <div><i class="fas fa-ruler-combined"></i> 1,400 sqft</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="property-card">
+            <div class="property-img-wrapper">
+              <div class="property-badges"><span class="badge badge-success">For Sale</span></div>
+              <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?fm=webp&fit=crop&w=800&q=30" alt="Property" loading="lazy">
+              <div class="property-price">$540,000</div>
+              <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="property-details">
+              <p class="property-type">House</p>
+              <h3 class="property-title"><a href="property.html">Suburban Family House</a></h3>
+              <p class="property-location"><i class="fas fa-map-marker-alt"></i> Phoenix, AZ</p>
+              <div class="property-amenities">
+                <div><i class="fas fa-bed"></i> 3</div>
+                <div><i class="fas fa-bath"></i> 2</div>
+                <div><i class="fas fa-ruler-combined"></i> 2,200 sqft</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="property-card">
+            <div class="property-img-wrapper">
+              <div class="property-badges"><span class="badge badge-primary" style="background:#f59e0b;">For Rent</span></div>
+              <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?fm=webp&fit=crop&w=800&q=30" alt="Property" loading="lazy">
+              <div class="property-price">$4,500<span>/mo</span></div>
+              <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="property-details">
+              <p class="property-type">Apartment</p>
+              <h3 class="property-title"><a href="property.html">Penthouse Suite</a></h3>
+              <p class="property-location"><i class="fas fa-map-marker-alt"></i> San Francisco, CA</p>
+              <div class="property-amenities">
+                <div><i class="fas fa-bed"></i> 3</div>
+                <div><i class="fas fa-bath"></i> 3</div>
+                <div><i class="fas fa-ruler-combined"></i> 2,800 sqft</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="property-card">
+            <div class="property-img-wrapper">
+              <div class="property-badges"><span class="badge badge-success">For Sale</span></div>
+              <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?fm=webp&fit=crop&w=800&q=30" alt="Property" loading="lazy">
+              <div class="property-price">$3,100,000</div>
+              <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="property-details">
+              <p class="property-type">Villa</p>
+              <h3 class="property-title"><a href="property.html">Mediterranean Estate</a></h3>
+              <p class="property-location"><i class="fas fa-map-marker-alt"></i> Malibu, CA</p>
+              <div class="property-amenities">
+                <div><i class="fas fa-bed"></i> 7</div>
+                <div><i class="fas fa-bath"></i> 6</div>
+                <div><i class="fas fa-ruler-combined"></i> 8,500 sqft</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <a href="index.html"><img src="img/logo.webp" alt="Stackly" style="height:40px; width:auto; filter:brightness(0) invert(1);"></a>
+        </div>
+        <p class="footer-text">We're reimagining how you buy, sell, and rent. It's now easier than ever to get into a place you love.</p>
+        <div class="social-links">
+          <a href="404.html" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="404.html" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="404.html" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="404.html" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer-title">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="listing.html">Listings</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Property Types</h4>
+        <ul class="footer-links">
+          <li><a href="listing.html?type=apartment">Apartments</a></li>
+          <li><a href="listing.html?type=villa">Villas</a></li>
+          <li><a href="listing.html?type=house">Houses</a></li>
+          <li><a href="listing.html?type=plot">Plots</a></li>
+          <li><a href="listing.html?type=commercial">Commercial</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Contact</h4>
+        <ul class="footer-links">
+          <li><i class="fas fa-map-marker-alt" style="color:var(--primary); margin-right:8px;"></i> Salem, Tamil Nadu, India - 636001</li>
+          <li><i class="fas fa-phone" style="color:var(--primary); margin-right:8px;"></i>+91 98765 43210 (24/7 Available)</li>
+          <li><i class="fas fa-envelope" style="color:var(--primary); margin-right:8px;"></i>support@stackly.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Stackly. All rights reserved. | <a href="404.html" style="color:var(--primary);">Privacy Policy</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+<script>
+  const priceRange = document.getElementById('priceRange');
+  const priceVal = document.getElementById('priceVal');
+  priceRange.addEventListener('input', () => {
+    priceVal.textContent = '$' + parseInt(priceRange.value).toLocaleString();
+  });
+  function setBed(btn) {
+    document.querySelectorAll('.filter-section button').forEach(b => {
+      b.className = 'btn btn-outline';
+      b.style.padding = '0.5rem 1rem'; b.style.fontSize = '0.875rem';
+    });
+    btn.className = 'btn btn-primary';
+    btn.style.padding = '0.5rem 1rem'; btn.style.fontSize = '0.875rem';
+  }
+</script>
+</body>
+</html>
+
+
+
+

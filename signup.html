@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up –Stackly</title>
+  <meta name="description" content="Create your free Stackly account to save properties, list homes, and manage your real estate portfolio.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .auth-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+    }
+    .auth-hero {
+      background: linear-gradient(rgba(17,24,39,0.7), rgba(17,24,39,0.75)), url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?fm=webp&fit=crop&w=1200&q=30') center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem;
+      color: white;
+      flex-direction: column;
+      text-align: center;
+    }
+    .auth-form-side {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 4rem;
+      background: #f9fafb;
+      overflow-y: auto;
+    }
+    .auth-form-inner { width: 100%; max-width: 420px; }
+    .auth-tabs { display:flex; border-bottom:2px solid var(--border); margin-bottom:2rem; }
+    .auth-tab { flex:1; padding:1rem; font-weight:600; text-align:center; color:var(--text-muted); border-bottom:3px solid transparent; margin-bottom:-2px; cursor:pointer; text-decoration:none; }
+    .auth-tab.active { color:var(--primary); border-bottom-color:var(--primary); }
+    .social-auth { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.5rem; }
+    .social-btn { display:flex; align-items:center; justify-content:center; gap:0.75rem; padding:0.875rem; border:1px solid var(--border); border-radius:var(--radius-md); font-weight:500; background:white; transition:var(--transition); cursor:pointer; }
+    .social-btn:hover { box-shadow:var(--shadow-md); }
+    .google-btn:hover { border-color:#ea4335; color:#ea4335; }
+    .apple-btn:hover { border-color:#111; color:#111; }
+    .divider { display:flex; align-items:center; gap:1rem; margin:1.5rem 0; color:var(--text-muted); font-size:0.875rem; }
+    .divider::before, .divider::after { content:''; flex:1; height:1px; background:var(--border); }
+    .password-wrapper { position:relative; }
+    .toggle-pw { position:absolute; right:1rem; top:50%; transform:translateY(-50%); color:var(--text-muted); cursor:pointer; }
+    .stat-pill { background:rgba(255,255,255,0.15); padding:1rem 2rem; border-radius:var(--radius-full); }
+    @media(max-width:768px) { .auth-wrapper { grid-template-columns:1fr; } .auth-hero { display:none; } .auth-form-side { padding:2rem; } }
+  </style>
+</head>
+<body>
+
+<div class="auth-wrapper">
+
+  <!-- Left: Hero Panel -->
+  <div class="auth-hero">
+    <a href="index.html" class="logo" style="margin-bottom:3rem;">
+      <img src="img/logo.webp" alt="Stackly" style="height:48px; width:auto; filter:brightness(0) invert(1);">
+    </a>
+    <h2 style="font-size:2.5rem; margin-bottom:1rem; line-height:1.2;">Start Your Journey Today</h2>
+    <p style="opacity:0.85; font-size:1.1rem; margin-bottom:3rem;">Create a free account to unlock exclusive properties, save favorites, and connect with top agents.</p>
+    <div style="display:flex; gap:1.5rem; flex-wrap:wrap; justify-content:center;">
+      <div class="stat-pill"><strong style="font-size:1.5rem;">2M+</strong><br><small>Properties Sold</small></div>
+      <div class="stat-pill"><strong style="font-size:1.5rem;">#1</strong><br><small>Trusted Platform</small></div>
+    </div>
+  </div>
+
+  <!-- Right: Auth Form -->
+  <div class="auth-form-side">
+    <div class="auth-form-inner">
+
+      <div class="auth-tabs">
+        <a href="signup.html" class="auth-tab active">Sign Up</a>
+      </div>
+
+        <form id="signupFormEl" action="login.html">
+          <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+            <div class="form-group">
+              <label class="form-label">First Name</label>
+              <input class="form-control" type="text" placeholder="John" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last Name</label>
+              <input class="form-control" type="text" placeholder="Doe" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input class="form-control" type="email" placeholder="john@example.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <div class="password-wrapper">
+              <input class="form-control" type="password" placeholder="Min. 8 characters" id="signupPw" required>
+              <i class="far fa-eye toggle-pw" onclick="togglePw('signupPw', this)"></i>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Account Type</label>
+            <select class="form-control" required>
+              <option>Buyer / Renter</option>
+              <option>Property Owner / Seller</option>
+              <option>Real Estate Agent</option>
+            </select>
+          </div>
+          <div style="display:flex; align-items:flex-start; gap:0.5rem; margin-bottom:1.5rem;">
+            <input type="checkbox" id="terms" style="accent-color:var(--primary); margin-top:2px;" required>
+            <label for="terms" style="font-size:0.875rem; color:var(--text-muted);">
+              I agree to the <a href="404.html" style="color:var(--primary);">Terms of Service</a> and <a href="404.html" style="color:var(--primary);">Privacy Policy</a>
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%; padding:1rem; font-size:1rem;">Create Account</button>
+          <p class="auth-links" style="margin-top:1.5rem; text-align:center;">
+            Already have an account? <a href="login.html">Log in</a>
+          </p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script src="js/script.js"></script>
+<script>
+  function togglePw(id, icon) {
+    const input = document.getElementById(id);
+    if (input.type === 'password') {
+      input.type = 'text';
+      icon.classList.replace('fa-eye', 'fa-eye-slash');
+    } else {
+      input.type = 'password';
+      icon.classList.replace('fa-eye-slash', 'fa-eye');
+    }
+  }
+
+  // Final Sign Up Redirection to Login
+  document.getElementById('signupFormEl').addEventListener('submit', e => {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
+    btn.style.opacity = '0.7';
+    btn.disabled = true;
+    
+    setTimeout(() => {
+      window.location.href = 'login.html?signup=success';
+    }, 1200);
+  });
+</script>
+</body>
+</html>

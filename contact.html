@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us – Stackly</title>
+  <meta name="description" content="Get in touch with Stackly. Contact us by phone, email, or visit our office. We're here to help with all your real estate needs.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="container header-container">
+    <a href="index.html" class="logo"><img src="img/logo.webp" alt="Stackly" style="height:44px; width:auto;"></a>
+    <nav><ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="listing.html">Listings</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+      <li class="mobile-only"><a href="login.html" class="btn btn-outline">Log In</a></li>
+      <li class="mobile-only"><a href="create-listing.html" class="btn btn-primary"><i class="fas fa-plus"></i> List Property</a></li>
+    </ul></nav>
+    <div class="nav-actions">
+      <a href="login.html" class="btn btn-outline">Log In</a>
+      <a href="create-listing.html" class="btn btn-primary"><i class="fas fa-plus"></i> List Property</a>
+    </div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+  </div>
+</header>
+
+<div class="page-header">
+  <div class="container">
+    <h1>Contact Us</h1>
+  </div>
+</div>
+
+<!-- Info Bar -->
+<div style="background:var(--primary); color:white; padding:2rem 0;">
+  <div class="container mobile-stack-grid" style="grid-template-columns:repeat(3,1fr); text-align:center;">
+    <div>
+      <i class="fas fa-phone" style="font-size:1.5rem; margin-bottom:0.5rem; display:block;"></i>
+      <strong>+91 98765 43210 (24/7 Available)</strong>
+      <p style="font-size:0.875rem; opacity:0.8; margin-top:0.25rem;">Mon – Fri, 9am – 6pm</p>
+    </div>
+    <div>
+      <i class="fas fa-envelope" style="font-size:1.5rem; margin-bottom:0.5rem; display:block;"></i>
+      <strong>support@stackly.com</strong>
+      <p style="font-size:0.875rem; opacity:0.8; margin-top:0.25rem;">We reply within 24 hours</p>
+    </div>
+    <div>
+      <i class="fas fa-map-marker-alt" style="font-size:1.5rem; margin-bottom:0.5rem; display:block;"></i>
+      <strong>Salem, Tamil Nadu, India - 636001</strong>
+      <p style="font-size:0.875rem; opacity:0.8; margin-top:0.25rem;">Visit our office</p>
+    </div>
+  </div>
+</div>
+
+<main class="section">
+  <div class="container">
+    <div class="contact-layout">
+
+      <!-- Contact Form -->
+      <div>
+        <p style="color:var(--primary); font-weight:600; margin-bottom:0.5rem;">Get In Touch</p>
+        <h2 style="font-size:2rem; margin-bottom:2rem;">Send Us a Message</h2>
+
+        <form id="contactForm" novalidate>
+          <div class="mobile-stack-grid" style="grid-template-columns:1fr 1fr;">
+            <div class="form-group">
+              <label class="form-label">First Name *</label>
+              <input class="form-control" type="text" placeholder="John" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last Name *</label>
+              <input class="form-control" type="text" placeholder="Doe" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address *</label>
+            <input class="form-control" type="email" placeholder="john@example.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone Number</label>
+            <input class="form-control" type="tel" placeholder="+1 (555) 000-0000">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Subject *</label>
+            <select class="form-control" required>
+              <option value="">Select a topic</option>
+              <option>Property Inquiry</option>
+              <option>List My Property</option>
+              <option>Mortgage / Finance</option>
+              <option>General Question</option>
+              <option>Support</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message *</label>
+            <textarea class="form-control" rows="6" placeholder="Tell us how we can help you…" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%; font-size:1rem; padding:1rem;">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+          <div id="formSuccess" style="display:none; margin-top:1rem; padding:1rem; background:#d1fae5; border-radius:var(--radius-md); color:#065f46; text-align:center;">
+            <i class="fas fa-check-circle"></i> Message sent! We'll get back to you soon.
+          </div>
+        </form>
+      </div>
+
+
+      <!-- Contact Info Sidebar -->
+      <div style="background:var(--bg-light); padding:2.5rem; border-radius:var(--radius-lg); height: 100%;">
+        <p style="color:var(--primary); font-weight:600; margin-bottom:0.5rem;">Find Us</p>
+        <h2 style="font-size:2rem; margin-bottom:2rem;">Our Office</h2>
+        
+        <div style="display:flex; flex-direction:column; gap:2rem;">
+          <div style="display:flex; gap:1.25rem;">
+            <div style="width:50px; height:500px; background:rgba(0,106,255,0.1); color:var(--primary); border-radius:var(--radius-md); display:none; align-items:center; justify-content:center; font-size:1.25rem; flex-shrink:0;">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div>
+              <h4 style="margin-bottom:0.5rem; display:flex; align-items:center; gap:0.5rem;"><i class="fas fa-map-marker-alt" style="color:var(--primary);"></i> Our Address</h4>
+              <p style="color:var(--text-muted);">MMR Complex, Chinna Thirupathi,<br>near Chinna Muniyappan Kovil,<br>Salem, Tamil Nadu 636008</p>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:1.25rem;">
+            <div>
+              <h4 style="margin-bottom:0.5rem; display:flex; align-items:center; gap:0.5rem;"><i class="fas fa-clock" style="color:var(--primary);"></i> Working Hours</h4>
+              <p style="color:var(--text-muted);">Monday – Friday: 9:00 AM – 6:00 PM<br>Saturday: 10:00 AM – 2:00 PM<br>Sunday: Closed</p>
+            </div>
+          </div>
+          
+          <div style="display:flex; gap:1.25rem;">
+            <div>
+              <h4 style="margin-bottom:0.5rem; display:flex; align-items:center; gap:0.5rem;"><i class="fas fa-headset" style="color:var(--primary);"></i> Support</h4>
+              <p style="color:var(--text-muted);">Our support team is available 24/7<br>to help with any urgent property<br>queries or technical issues.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- Unified Map Section -->
+<section class="map-section reveal-up">
+  <div class="container">
+    <div class="map-wrapper">
+      <iframe
+        src="https://www.google.com/maps?q=MMR+Complex,+Chinna+Thirupathi,+near+Chinna+Muniyappan+Kovil,+Salem,+Tamil+Nadu+636008&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+      <div class="map-placeholder">
+        <i class="fas fa-map-marked-alt"></i>
+        <p>Interactive Map Loading...</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <a href="index.html"><img src="img/logo.webp" alt="Stackly" style="height:40px; width:auto; filter:brightness(0) invert(1);"></a>
+        </div>
+        <p class="footer-text">We're reimagining how you buy, sell, and rent. It's now easier than ever to get into a place you love.</p>
+        <div class="social-links">
+          <a href="404.html" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="404.html" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="404.html" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="404.html" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer-title">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="listing.html">Listings</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Property Types</h4>
+        <ul class="footer-links">
+          <li><a href="listing.html?type=apartment">Apartments</a></li>
+          <li><a href="listing.html?type=villa">Villas</a></li>
+          <li><a href="listing.html?type=house">Houses</a></li>
+          <li><a href="listing.html?type=plot">Plots</a></li>
+          <li><a href="listing.html?type=commercial">Commercial</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Contact</h4>
+        <ul class="footer-links">
+          <li><i class="fas fa-map-marker-alt" style="color:var(--primary); margin-right:8px;"></i> Salem, Tamil Nadu, India - 636001</li>
+          <li><i class="fas fa-phone" style="color:var(--primary); margin-right:8px;"></i>+91 98765 43210 (24/7 Available)</li>
+          <li><i class="fas fa-envelope" style="color:var(--primary); margin-right:8px;"></i>support@stackly.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Stackly. All rights reserved. | <a href="404.html" style="color:var(--primary);">Privacy Policy</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+<script>
+  document.getElementById('contactForm').addEventListener('submit', e => {
+    e.preventDefault();
+    document.getElementById('formSuccess').style.display = 'block';
+    e.target.reset();
+    setTimeout(() => { document.getElementById('formSuccess').style.display = 'none'; }, 5000);
+  });
+</script>
+</body>
+</html>
+
+
+
+

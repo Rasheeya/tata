@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stackly Real Estate – Find Your Dream Home</title>
+  <meta name="description" content="Stackly Real Estate helps you buy, sell and rent properties. Browse thousands of listings across the US. Find your perfect home today.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header" id="header">
+  <div class="container header-container">
+    <a href="index.html" class="logo">
+      <img src="./logy.webp" style="height:44px; width:auto;">
+    </a>
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="listing.html">Listings</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li class="mobile-only"><a href="login.html" class="btn btn-outline">Log In</a></li>
+        <li class="mobile-only"><a href="create-listing.html" class="btn btn-primary"><i class="fas fa-plus"></i> List Property</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <a href="login.html" class="btn btn-outline">Log In</a>
+      <a href="create-listing.html" class="btn btn-primary"><i class="fas fa-plus"></i> List Property</a>
+    </div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="container hero-content">
+    <h1 class="hero-title">Find Your Dream Home</h1>
+    <p class="hero-subtitle">Explore thousands of premium listings across the nation.</p>
+
+    <div class="search-container">
+      <div class="search-tabs">
+        <button class="search-tab active" data-tab="buy">Buy</button>
+        <button class="search-tab" data-tab="rent">Rent</button>
+        <button class="search-tab" data-tab="sell">Sell</button>
+      </div>
+      <form class="search-form" id="heroSearchForm" action="listing.html">
+        <div class="search-field">
+          <i class="fas fa-search"></i>
+          <input type="text" name="q" placeholder="City, neighborhood, or address…">
+        </div>
+        <div class="search-field">
+          <i class="fas fa-home"></i>
+          <select name="type">
+            <option value="">Property Type</option>
+            <option value="apartment">Apartment</option>
+            <option value="villa">Villa</option>
+            <option value="house">House</option>
+            <option value="plot">Plot</option>
+            <option value="commercial">Commercial</option>
+          </select>
+        </div>
+        <div class="search-field">
+          <i class="fas fa-map-marker-alt"></i>
+          <select name="location">
+            <option value="">Location</option>
+            <option value="new-york">New York</option>
+            <option value="los-angeles">Los Angeles</option>
+            <option value="miami">Miami</option>
+            <option value="chicago">Chicago</option>
+            <option value="houston">Houston</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary" style="white-space:nowrap; padding: 0.75rem 2rem;">
+          <i class="fas fa-search"></i> Search
+        </button>
+      </form>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="hero-stats">
+      <div class="hero-stat-item">
+        <strong class="stat-count" data-target="12" data-suffix="K+">0</strong>
+        <span>Properties Listed</span>
+      </div>
+      <div class="hero-stat-divider">|</div>
+      <div class="hero-stat-item">
+        <strong class="stat-count" data-target="8" data-suffix="K+">0</strong>
+        <span>Happy Clients</span>
+      </div>
+      <div class="hero-stat-divider">|</div>
+      <div class="hero-stat-item">
+        <strong class="stat-count" data-target="500" data-suffix="+">0</strong>
+        <span>Expert Agents</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BUY / RENT / SELL TAB PANELS ===== -->
+<section id="tabPanelSection" style="background:var(--bg-light); padding:4rem 0;">
+  <div class="container">
+
+    <!-- ── BUY Panel ── -->
+    <div class="tab-panel" id="panel-buy">
+      <div class="panel-hero">
+        <div class="panel-content">
+          <span class="panel-badge badge-buy">Buy a Home</span>
+          <h2>Find the Perfect Home <br>to Call Your Own</h2>
+          <p>Browse thousands of verified listings across top cities. From cozy starter apartments to grand estates, we help you every step of the way — from search to closing.</p>
+          <div class="panel-features">
+            <span><i class="fas fa-check-circle"></i> Verified Listings</span>
+            <span><i class="fas fa-check-circle"></i> No Hidden Fees</span>
+            <span><i class="fas fa-check-circle"></i> 500+ Expert Agents</span>
+            <span><i class="fas fa-check-circle"></i> Mortgage Assistance</span>
+          </div>
+          <a href="listing.html?intent=buy" class="btn btn-primary"><i class="fas fa-search"></i> Browse Homes for Sale</a>
+        </div>
+        <div class="panel-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?fm=webp&fit=crop&w=1000&q=30" alt="Buy a Home">
+          <div class="panel-price-tag price-buy">
+            <p>Starting from</p>
+            <strong>$120,000</strong>
+          </div>
+        </div>
+      </div>
+      <!-- Cards -->
+      <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:1.5rem;">Featured For Sale</h3>
+      <div class="grid grid-cols-3">
+        <div class="property-card">
+          <div class="property-img-wrapper">
+            <div class="property-badges"><span class="badge badge-primary">Featured</span><span class="badge badge-success">For Sale</span></div>
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?fm=webp&fit=crop&w=800&q=30" alt="Modern Coastal Villa" loading="lazy">
+            <div class="property-price">$1,250,000</div>
+            <button class="wishlist-btn" aria-label="Save"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="property-details">
+            <p class="property-type">Villa</p>
+            <h3 class="property-title"><a href="property.html">Modern Coastal Villa</a></h3>
+            <p class="property-location"><i class="fas fa-map-marker-alt"></i> 2145 Ocean Ave, Los Angeles, CA</p>
+            <div class="property-amenities">
+              <div><i class="fas fa-bed"></i> 4 Beds</div>
+              <div><i class="fas fa-bath"></i> 3 Baths</div>
+              <div><i class="fas fa-ruler-combined"></i> 3,400 sqft</div>
+            </div>
+          </div>
+        </div>
+        <div class="property-card">
+          <div class="property-img-wrapper">
+            <div class="property-badges"><span class="badge badge-success">For Sale</span></div>
+            <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?fm=webp&fit=crop&w=800&q=30" alt="Waterfront Family Home" loading="lazy">
+            <div class="property-price">$875,000</div>
+            <button class="wishlist-btn" aria-label="Save"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="property-details">
+            <p class="property-type">House</p>
+            <h3 class="property-title"><a href="property.html">Waterfront Family Home</a></h3>
+            <p class="property-location"><i class="fas fa-map-marker-alt"></i> 3302 Bay Dr, Miami, FL</p>
+            <div class="property-amenities">
+              <div><i class="fas fa-bed"></i> 5 Beds</div>
+              <div><i class="fas fa-bath"></i> 4 Baths</div>
+              <div><i class="fas fa-ruler-combined"></i> 4,800 sqft</div>
+            </div>
+          </div>
+        </div>
+        <div class="property-card">
+          <div class="property-img-wrapper">
+            <div class="property-badges"><span class="badge badge-primary">Featured</span><span class="badge badge-success">For Sale</span></div>
+            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?fm=webp&fit=crop&w=800&q=30" alt="Grand Estate with Pool" loading="lazy">
+            <div class="property-price">$2,400,000</div>
+            <button class="wishlist-btn" aria-label="Save"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="property-details">
+            <p class="property-type">Villa</p>
+            <h3 class="property-title"><a href="property.html">Grand Estate with Pool</a></h3>
+            <p class="property-location"><i class="fas fa-map-marker-alt"></i> 910 River Oaks Blvd, Houston, TX</p>
+            <div class="property-amenities">
+              <div><i class="fas fa-bed"></i> 6 Beds</div>
+              <div><i class="fas fa-bath"></i> 5 Baths</div>
+              <div><i class="fas fa-ruler-combined"></i> 7,200 sqft</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:2rem;"><a href="listing.html?intent=buy" class="btn btn-outline">View All Properties for Sale <i class="fas fa-arrow-right"></i></a></div>
+    </div>
+
+    <!-- ── RENT Panel ── -->
+    <div class="tab-panel" id="panel-rent" style="display:none;">
+      <div class="panel-hero">
+        <div class="panel-content">
+          <span class="panel-badge badge-rent">Rent a Home</span>
+          <h2>Find the Ideal Rental <br>That Fits Your Lifestyle</h2>
+          <p>Whether you're looking for a short-term furnished apartment or a long-term family home, our rental listings cover every budget and neighborhood in the city.</p>
+          <div class="panel-features">
+            <span><i class="fas fa-check-circle"></i> Flexible Leases</span>
+            <span><i class="fas fa-check-circle"></i> Furnished Options</span>
+            <span><i class="fas fa-check-circle"></i> Pet Friendly Listings</span>
+            <span><i class="fas fa-check-circle"></i> Instant Applications</span>
+          </div>
+          <a href="listing.html?intent=rent" class="btn btn-primary btn-rent"><i class="fas fa-search"></i> Browse Rentals</a>
+        </div>
+        <div class="panel-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?fm=webp&fit=crop&w=1000&q=30" alt="Rent a Home">
+          <div class="panel-price-tag price-rent">
+            <p>Starting from</p>
+            <strong>$800<span>/mo</span></strong>
+          </div>
+        </div>
+      </div>
+      <!-- Cards -->
+      <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:1.5rem;">Featured Rentals</h3>
+      <div class="grid grid-cols-3">
+        <div class="property-card">
+          <div class="property-img-wrapper">
+            <div class="property-badges"><span class="badge badge-primary" style="background:var(--warning);">For Rent</span></div>
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?fm=webp&fit=crop&w=800&q=30" alt="Sky-High Luxury Apartment" loading="lazy">
+            <div class="property-price">$5,200<span>/mo</span></div>
+            <button class="wishlist-btn" aria-label="Save"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="property-details">
+            <p class="property-type" style="color:var(--warning);">Apartment</p>
+            <h3 class="property-title"><a href="property.html">Sky-High Luxury Apartment</a></h3>
+            <p class="property-location"><i class="fas fa-map-marker-alt"></i> 520 Park Ave, New York, NY</p>
+            <div class="property-amenities">
+              <div><i class="fas fa-bed"></i> 3 Beds</div>
+              <div><i class="fas fa-bath"></i> 2 Baths</div>
+              <div><i class="fas fa-ruler-combined"></i> 2,100 sqft</div>
+            </div>
+          </div>
+        </div>
+        <div class="property-card">
+          <div class="property-img-wrapper">
+            <div class="property-badges"><span class="badge badge-primary" style="background:var(--warning);">For Rent</span></div>
+            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?fm=webp&fit=crop&w=800&q=30" alt="Downtown Studio Loft" loading="lazy">
+            <div class="property-price">$2,800<span>/mo</span></div>
+            <button class="wishlist-btn" aria-label="Save"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="property-details">
+            <p class="property-type" style="color:var(--warning);">Apartment</p>
+            <h3 class="property-title"><a href="property.html">Downtown Studio Loft</a></h3>
+            <p class="property-location"><i class="fas fa-map-marker-alt"></i> 140 S Dearborn, Chicago, IL</p>
+            <div class="property-amenities">
+              <div><i class="fas fa-bed"></i> 1 Bed</div>
+              <div><i class="fas fa-bath"></i> 1 Bath</div>
+              <div><i class="fas fa-ruler-combined"></i> 780 sqft</div>
+            </div>
+          </div>
+        </div>
+        <div class="property-card">
+          <div class="property-img-wrapper">
+            <div class="property-badges"><span class="badge badge-primary" style="background:var(--warning);">For Rent</span></div>
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?fm=webp&fit=crop&w=800&q=30" alt="Modern City Condo" loading="lazy">
+            <div class="property-price">$3,900<span>/mo</span></div>
+            <button class="wishlist-btn" aria-label="Save"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="property-details">
+            <p class="property-type" style="color:var(--warning);">Condo</p>
+            <h3 class="property-title"><a href="property.html">Modern City Condo</a></h3>
+            <p class="property-location"><i class="fas fa-map-marker-alt"></i> 800 Brickell Key Dr, Miami, FL</p>
+            <div class="property-amenities">
+              <div><i class="fas fa-bed"></i> 2 Beds</div>
+              <div><i class="fas fa-bath"></i> 2 Baths</div>
+              <div><i class="fas fa-ruler-combined"></i> 1,400 sqft</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:2rem;"><a href="listing.html?intent=rent" class="btn btn-outline">View All Rentals <i class="fas fa-arrow-right"></i></a></div>
+    </div>
+
+    <!-- ── SELL Panel ── -->
+    <div class="tab-panel" id="panel-sell" style="display:none;">
+      <div class="panel-hero">
+        <div class="panel-content">
+          <span class="panel-badge badge-sell">Sell Your Home</span>
+          <h2>List Your Property & <br>Reach Millions of Buyers</h2>
+          <p>Sell faster and smarter with Stackly. Get a free home valuation, connect with our top agents, and list your property to thousands of active buyers — all in minutes.</p>
+          <div class="panel-features">
+            <span><i class="fas fa-check-circle"></i> Free Valuation</span>
+            <span><i class="fas fa-check-circle"></i> Wide Buyer Network</span>
+            <span><i class="fas fa-check-circle"></i> Professional Photos</span>
+            <span><i class="fas fa-check-circle"></i> Fast Closing</span>
+          </div>
+          <a href="create-listing.html" class="btn btn-primary btn-sell"><i class="fas fa-plus-circle"></i> List Your Property Free</a>
+        </div>
+        <div class="panel-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1560520031-3a4dc4e9de0c?fm=webp&fit=crop&w=1000&q=30" alt="Sell Your Home">
+          <div class="panel-price-tag price-sell">
+            <p>Avg. sale time</p>
+            <strong>21 Days</strong>
+          </div>
+        </div>
+      </div>
+      <!-- How it works steps -->
+      <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:1.5rem;">How Selling Works</h3>
+      <div class="grid grid-cols-3" style="margin-bottom:2.5rem;">
+        <div style="background:white; padding:2rem; border-radius:1rem; border:1px solid var(--border); text-align:center;">
+          <div style="width:56px; height:56px; background:rgba(16,185,129,0.1); color:var(--success); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5rem; margin:0 auto 1rem;"><i class="fas fa-calculator"></i></div>
+          <span style="background:var(--success); color:white; font-size:0.7rem; font-weight:700; padding:0.2rem 0.6rem; border-radius:99px; margin-bottom:0.75rem; display:inline-block;">Step 1</span>
+          <h4 style="font-size:1.1rem; margin-bottom:0.5rem;">Get a Free Valuation</h4>
+          <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.6;">Enter your property details and receive an instant market valuation based on real data in your area.</p>
+        </div>
+        <div style="background:white; padding:2rem; border-radius:1rem; border:1px solid var(--border); text-align:center;">
+          <div style="width:56px; height:56px; background:rgba(16,185,129,0.1); color:var(--success); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5rem; margin:0 auto 1rem;"><i class="fas fa-camera"></i></div>
+          <span style="background:var(--success); color:white; font-size:0.7rem; font-weight:700; padding:0.2rem 0.6rem; border-radius:99px; margin-bottom:0.75rem; display:inline-block;">Step 2</span>
+          <h4 style="font-size:1.1rem; margin-bottom:0.5rem;">List & Showcase</h4>
+          <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.6;">Upload photos, write your description, and publish; our agents help you stage it for maximum appeal.</p>
+        </div>
+        <div style="background:white; padding:2rem; border-radius:1rem; border:1px solid var(--border); text-align:center;">
+          <div style="width:56px; height:56px; background:rgba(16,185,129,0.1); color:var(--success); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5rem; margin:0 auto 1rem;"><i class="fas fa-handshake"></i></div>
+          <span style="background:var(--success); color:white; font-size:0.7rem; font-weight:700; padding:0.2rem 0.6rem; border-radius:99px; margin-bottom:0.75rem; display:inline-block;">Step 3</span>
+          <h4 style="font-size:1.1rem; margin-bottom:0.5rem;">Close the Deal</h4>
+          <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.6;">Review offers, negotiate with confidence, and close with full legal and financial support from our team.</p>
+        </div>
+      </div>
+      <!-- Recently sold -->
+      <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:1.5rem;">Recently Sold Near You</h3>
+      <div class="grid grid-cols-3">
+        <div class="property-card" style="opacity:0.9;">
+          <div class="property-img-wrapper">
+            <div class="property-badges"><span class="badge" style="background:#6b7280;">Sold</span></div>
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?fm=webp&fit=crop&w=800&q=30" alt="Sold Property" loading="lazy" style="filter:saturate(0.7);">
+            <div class="property-price" style="background:var(--success); color:white;">$1,190,000</div>
+          </div>
+          <div class="property-details">
+            <p class="property-type" style="color:var(--success);">Sold in 18 days</p>
+            <h3 class="property-title">Beachfront Modern Villa</h3>
+            <p class="property-location"><i class="fas fa-map-marker-alt"></i> Malibu, CA</p>
+            <div class="property-amenities">
+              <div><i class="fas fa-bed"></i> 4 Beds</div><div><i class="fas fa-bath"></i> 3 Baths</div><div><i class="fas fa-ruler-combined"></i> 3,200 sqft</div>
+            </div>
+          </div>
+        </div>
+        <div class="property-card" style="opacity:0.9;">
+          <div class="property-img-wrapper">
+            <div class="property-badges"><span class="badge" style="background:#6b7280;">Sold</span></div>
+            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?fm=webp&fit=crop&w=800&q=30" alt="Sold Property" loading="lazy" style="filter:saturate(0.7);">
+            <div class="property-price" style="background:var(--success); color:white;">$620,000</div>
+          </div>
+          <div class="property-details">
+            <p class="property-type" style="color:var(--success);">Sold in 24 days</p>
+            <h3 class="property-title">Urban Townhouse</h3>
+            <p class="property-location"><i class="fas fa-map-marker-alt"></i> Austin, TX</p>
+            <div class="property-amenities">
+              <div><i class="fas fa-bed"></i> 3 Beds</div><div><i class="fas fa-bath"></i> 2 Baths</div><div><i class="fas fa-ruler-combined"></i> 1,900 sqft</div>
+            </div>
+          </div>
+        </div>
+        <div class="property-card" style="opacity:0.9;">
+          <div class="property-img-wrapper">
+            <div class="property-badges"><span class="badge" style="background:#6b7280;">Sold</span></div>
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?fm=webp&fit=crop&w=700&q=45" alt="Sold Property" loading="lazy" style="filter:saturate(0.7);">
+            <div class="property-price" style="background:var(--success); color:white;">$2,100,000</div>
+          </div>
+          <div class="property-details">
+            <p class="property-type" style="color:var(--success);">Sold in 11 days</p>
+            <h3 class="property-title">Penthouse Suite</h3>
+            <p class="property-location"><i class="fas fa-map-marker-alt"></i> Manhattan, NY</p>
+            <div class="property-amenities">
+              <div><i class="fas fa-bed"></i> 5 Beds</div><div><i class="fas fa-bath"></i> 4 Baths</div><div><i class="fas fa-ruler-combined"></i> 4,400 sqft</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:2rem;"><a href="create-listing.html" class="btn btn-outline">Start Selling Today <i class="fas fa-arrow-right"></i></a></div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // Wire hero search tabs to show/hide tab panels
+  (function() {
+    const tabs    = document.querySelectorAll('.search-tab');
+    const panels  = document.querySelectorAll('.tab-panel');
+    const section = document.getElementById('tabPanelSection');
+
+    function switchTab(tabName) {
+      tabs.forEach(t => {
+        t.classList.toggle('active', t.dataset.tab === tabName);
+      });
+      panels.forEach(p => {
+        p.style.display = p.id === 'panel-' + tabName ? 'block' : 'none';
+      });
+      // Smooth scroll to panel
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+    });
+  })();
+</script>
+
+
+<section class="section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:3rem;">
+      <p style="color:var(--primary); font-weight:600; margin-bottom:0.5rem;">What are you looking for?</p>
+      <h2 class="section-title">Browse by Category</h2>
+    </div>
+    <div class="grid grid-cols-4" id="categoriesGrid">
+      <a href="404.html" class="category-card">
+        <div class="category-icon"><i class="fas fa-building"></i></div>
+        <h3 class="category-title">Apartment</h3>
+        <p style="color:var(--text-muted); font-size:0.875rem;">3,420 listings</p>
+      </a>
+      <a href="404.html" class="category-card">
+        <div class="category-icon"><i class="fas fa-home"></i></div>
+        <h3 class="category-title">Villa</h3>
+        <p style="color:var(--text-muted); font-size:0.875rem;">1,250 listings</p>
+      </a>
+      <a href="404.html" class="category-card">
+        <div class="category-icon"><i class="fas fa-map"></i></div>
+        <h3 class="category-title">Plot</h3>
+        <p style="color:var(--text-muted); font-size:0.875rem;">890 listings</p>
+      </a>
+      <a href="404.html" class="category-card">
+        <div class="category-icon"><i class="fas fa-store"></i></div>
+        <h3 class="category-title">Commercial</h3>
+        <p style="color:var(--text-muted); font-size:0.875rem;">640 listings</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURED PROPERTIES ===== -->
+<section class="section bg-light">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:3rem;">
+      <p style="color:var(--primary); font-weight:600; margin-bottom:0.5rem;">Hand-picked by our experts</p>
+      <h2 class="section-title">Featured Properties</h2>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div style="display:flex; gap:1rem; justify-content:center; margin-bottom:2rem; flex-wrap:wrap;">
+      <button class="btn btn-primary filter-btn" data-filter="all">All</button>
+      <button class="btn btn-outline filter-btn" data-filter="sale">For Sale</button>
+      <button class="btn btn-outline filter-btn" data-filter="rent">For Rent</button>
+    </div>
+
+    <div class="grid grid-cols-3" id="featuredGrid">
+
+      <!-- Card 1 -->
+      <div class="property-card" data-status="sale">
+        <div class="property-img-wrapper">
+          <div class="property-badges">
+            <span class="badge badge-primary">Featured</span>
+            <span class="badge badge-success">For Sale</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?fm=webp&fit=crop&w=700&q=45" alt="Modern Villa Los Angeles" loading="lazy">
+          <div class="property-price">$1,250,000</div>
+          <button class="wishlist-btn" aria-label="Add to wishlist"><i class="far fa-heart"></i></button>
+        </div>
+        <div class="property-details">
+          <p class="property-type">Villa</p>
+          <h3 class="property-title"><a href="property.html">Modern Coastal Villa</a></h3>
+          <p class="property-location"><i class="fas fa-map-marker-alt"></i> 2145 Ocean Ave, Los Angeles, CA</p>
+          <div class="property-amenities">
+            <div><i class="fas fa-bed"></i> 4 Beds</div>
+            <div><i class="fas fa-bath"></i> 3 Baths</div>
+            <div><i class="fas fa-ruler-combined"></i> 3,400 sqft</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="property-card" data-status="rent">
+        <div class="property-img-wrapper">
+          <div class="property-badges">
+            <span class="badge badge-primary" style="background:#f59e0b;">For Rent</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?fm=webp&fit=crop&w=800&q=30" alt="Luxury Apartment New York" loading="lazy">
+          <div class="property-price">$5,200<span>/mo</span></div>
+          <button class="wishlist-btn" aria-label="Add to wishlist"><i class="far fa-heart"></i></button>
+        </div>
+        <div class="property-details">
+          <p class="property-type">Apartment</p>
+          <h3 class="property-title"><a href="property.html">Sky-High Luxury Apartment</a></h3>
+          <p class="property-location"><i class="fas fa-map-marker-alt"></i> 520 Park Ave, New York, NY</p>
+          <div class="property-amenities">
+            <div><i class="fas fa-bed"></i> 3 Beds</div>
+            <div><i class="fas fa-bath"></i> 2 Baths</div>
+            <div><i class="fas fa-ruler-combined"></i> 2,100 sqft</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="property-card" data-status="sale">
+        <div class="property-img-wrapper">
+          <div class="property-badges">
+            <span class="badge badge-success">For Sale</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?fm=webp&fit=crop&w=700&q=45" alt="Family Home Miami" loading="lazy">
+          <div class="property-price">$875,000</div>
+          <button class="wishlist-btn" aria-label="Add to wishlist"><i class="far fa-heart"></i></button>
+        </div>
+        <div class="property-details">
+          <p class="property-type">House</p>
+          <h3 class="property-title"><a href="property.html">Waterfront Family Home</a></h3>
+          <p class="property-location"><i class="fas fa-map-marker-alt"></i> 3302 Bay Dr, Miami, FL</p>
+          <div class="property-amenities">
+            <div><i class="fas fa-bed"></i> 5 Beds</div>
+            <div><i class="fas fa-bath"></i> 4 Baths</div>
+            <div><i class="fas fa-ruler-combined"></i> 4,800 sqft</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="property-card" data-status="rent">
+        <div class="property-img-wrapper">
+          <div class="property-badges">
+            <span class="badge badge-primary" style="background:#f59e0b;">For Rent</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?fm=webp&fit=crop&w=800&q=30" alt="Cozy Studio Chicago" loading="lazy">
+          <div class="property-price">$2,800<span>/mo</span></div>
+          <button class="wishlist-btn" aria-label="Add to wishlist"><i class="far fa-heart"></i></button>
+        </div>
+        <div class="property-details">
+          <p class="property-type">Apartment</p>
+          <h3 class="property-title"><a href="property.html">Downtown Studio Loft</a></h3>
+          <p class="property-location"><i class="fas fa-map-marker-alt"></i> 140 S Dearborn, Chicago, IL</p>
+          <div class="property-amenities">
+            <div><i class="fas fa-bed"></i> 1 Bed</div>
+            <div><i class="fas fa-bath"></i> 1 Bath</div>
+            <div><i class="fas fa-ruler-combined"></i> 780 sqft</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="property-card" data-status="sale">
+        <div class="property-img-wrapper">
+          <div class="property-badges">
+            <span class="badge badge-primary">Featured</span>
+            <span class="badge badge-success">For Sale</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?fm=webp&fit=crop&w=700&q=45" alt="Luxury Villa Houston" loading="lazy">
+          <div class="property-price">$2,400,000</div>
+          <button class="wishlist-btn" aria-label="Add to wishlist"><i class="far fa-heart"></i></button>
+        </div>
+        <div class="property-details">
+          <p class="property-type">Villa</p>
+          <h3 class="property-title"><a href="property.html">Grand Estate with Pool</a></h3>
+          <p class="property-location"><i class="fas fa-map-marker-alt"></i> 910 River Oaks Blvd, Houston, TX</p>
+          <div class="property-amenities">
+            <div><i class="fas fa-bed"></i> 6 Beds</div>
+            <div><i class="fas fa-bath"></i> 5 Baths</div>
+            <div><i class="fas fa-ruler-combined"></i> 7,200 sqft</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="property-card" data-status="rent">
+        <div class="property-img-wrapper">
+          <div class="property-badges">
+            <span class="badge badge-primary" style="background:#f59e0b;">For Rent</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?fm=webp&fit=crop&w=800&q=30" alt="Modern Condo" loading="lazy">
+          <div class="property-price">$3,900<span>/mo</span></div>
+          <button class="wishlist-btn" aria-label="Add to wishlist"><i class="far fa-heart"></i></button>
+        </div>
+        <div class="property-details">
+          <p class="property-type">Condo</p>
+          <h3 class="property-title"><a href="property.html">Modern City Condo</a></h3>
+          <p class="property-location"><i class="fas fa-map-marker-alt"></i> 800 Brickell Key Dr, Miami, FL</p>
+          <div class="property-amenities">
+            <div><i class="fas fa-bed"></i> 2 Beds</div>
+            <div><i class="fas fa-bath"></i> 2 Baths</div>
+            <div><i class="fas fa-ruler-combined"></i> 1,400 sqft</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center" style="margin-top:3rem;">
+      <a href="listing.html" class="btn btn-outline">View All Properties <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT INTRO ===== -->
+<section class="section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1560520031-3a4dc4e9de0c?fm=webp&fit=crop&w=800&q=30" alt="About Stackly Real Estate" class="about-image" style="width:100%;object-fit:cover;">
+        <div class="about-experience">
+          <h3 class="stat-count" data-target="15" data-suffix="+">0</h3>
+          <p>Years of Experience</p>
+        </div>
+      </div>
+      <div>
+        <p style="color:var(--primary); font-weight:600; margin-bottom:0.5rem;">Who We Are</p>
+        <h2 class="section-title">Your Trusted Real Estate Partner</h2>
+        <p style="color:var(--text-muted); margin:1.5rem 0;">At Stackly, we believe finding a home should be exciting, not overwhelming. Our platform connects buyers, sellers, and renters with the best properties and most trusted agents in the market.</p>
+        <ul class="about-list">
+          <li><i class="fas fa-check-circle"></i> Verified listings with transparent pricing</li>
+          <li><i class="fas fa-check-circle"></i> Expert agents ready to guide you</li>
+          <li><i class="fas fa-check-circle"></i> 24/7 support for all your real estate queries</li>
+          <li><i class="fas fa-check-circle"></i> Nationwide coverage with 500+ cities</li>
+        </ul>
+        <a href="contact.html" class="btn btn-primary" style="margin-top:2rem;">Get in Touch <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="section bg-light">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:3rem;">
+      <p style="color:var(--primary); font-weight:600; margin-bottom:0.5rem;">What People Say</p>
+      <h2 class="section-title">Client Testimonials</h2>
+    </div>
+    <div class="grid grid-cols-3">
+      <div class="testimonial-card">
+        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+        <p class="testimonial-text">"Stackly made finding our dream home incredibly easy. The team was professional and the listings were accurate. Highly recommended!"</p>
+        <div class="testimonial-author">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?fm=webp&fit=facearea&facepad=2&w=200&h=200&q=30" alt="Sarah M.">
+          <strong>Sarah Mitchell</strong>
+          <p style="font-size:0.875rem; color:var(--text-muted);">Home Buyer, NYC</p>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+        <p class="testimonial-text">"I listed my property on  and had serious buyers within the first week. The platform is intuitive and the support team is excellent."</p>
+        <div class="testimonial-author">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fm=webp&fit=facearea&facepad=2&w=200&h=200&q=30" alt="James R.">
+          <strong>James Rodriguez</strong>
+          <p style="font-size:0.875rem; color:var(--text-muted);">Property Seller, Miami</p>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+        <p class="testimonial-text">"Best real estate platform I've used. Found a fantastic rental apartment in Chicago within 3 days. The filters are very helpful!"</p>
+        <div class="testimonial-author">
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?fm=webp&fit=facearea&facepad=2&w=200&h=200&q=30" alt="Lisa K.">
+          <strong>Lisa Kim</strong>
+          <p style="font-size:0.875rem; color:var(--text-muted);">Renter, Chicago</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section">
+  <div class="container">
+    <h2 style="font-size:2.5rem; margin-bottom:1rem;">Ready to List Your Property?</h2>
+    <p style="font-size:1.125rem; opacity:0.9;">Join thousands of property owners and reach millions of buyers. It's free to get started.</p>
+    <a href="create-listing.html" class="btn" style="margin-top:2rem; font-weight:600; font-size:1rem;">
+      <i class="fas fa-plus-circle"></i> Create a Listing
+    </a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <a href="index.html"><img src="img/logo.webp" alt="Stackly" style="height:40px; width:auto; filter:brightness(0) invert(1);"></a>
+        </div>
+        <p class="footer-text">We're reimagining how you buy, sell, and rent. It's now easier than ever to get into a place you love.</p>
+        <div class="social-links">
+          <a href="404.html" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="404.html" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="404.html" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="404.html" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer-title">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="listing.html">Listings</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Property Types</h4>
+        <ul class="footer-links">
+          <li><a href="listing.html?type=apartment">Apartments</a></li>
+          <li><a href="listing.html?type=villa">Villas</a></li>
+          <li><a href="listing.html?type=house">Houses</a></li>
+          <li><a href="listing.html?type=plot">Plots</a></li>
+          <li><a href="listing.html?type=commercial">Commercial</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Contact</h4>
+        <ul class="footer-links">
+          <li><i class="fas fa-map-marker-alt" style="color:var(--primary); margin-right:8px;"></i> Salem, Tamil Nadu, India - 636001</li>
+          <li><i class="fas fa-phone" style="color:var(--primary); margin-right:8px;"></i>+91 98765 43210 (24/7 Available)</li>
+          <li><i class="fas fa-envelope" style="color:var(--primary); margin-right:8px;"></i>support@stackly.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Stackly. All rights reserved. | <a href="404.html" style="color:var(--primary);">Privacy Policy</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
+
+
+

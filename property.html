@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Coastal Villa – Stackly</title>
+  <meta name="description" content="4 bed, 3 bath Modern Coastal Villa for sale at $1,250,000 in Los Angeles, CA. View photos, amenities, floorplan and contact agent.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .gallery { display:grid; grid-template-columns:2fr 1fr; grid-template-rows:260px 260px; gap:0.75rem; border-radius:var(--radius-lg); overflow:hidden; margin-bottom:3rem; }
+    .gallery-main { grid-row:span 2; }
+    .gallery img { width:100%; height:100%; object-fit:cover; cursor:pointer; transition:var(--transition); }
+    .gallery img:hover { opacity:0.9; }
+    .tab-nav { display:flex; border-bottom:2px solid var(--border); margin-bottom:2rem; }
+    .tab-nav button { padding:1rem 1.5rem; font-weight:600; color:var(--text-muted); border-bottom:3px solid transparent; margin-bottom:-2px; }
+    .tab-nav button.active { color:var(--primary); border-bottom-color:var(--primary); }
+    .amenity-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+    .amenity-item { display:flex; align-items:center; gap:0.75rem; padding:1rem; background:var(--bg-light); border-radius:var(--radius-md); }
+    .amenity-item i { color:var(--primary); font-size:1.125rem; }
+    .map-placeholder { background:linear-gradient(135deg, #e8f0fe, #c7d7fd); border-radius:var(--radius-lg); height:300px; display:flex; align-items:center; justify-content:center; color:var(--primary); font-size:1.5rem; }
+    .agent-card { display:flex; align-items:center; gap:1.5rem; padding:1.5rem; background:var(--bg-light); border-radius:var(--radius-lg); margin-bottom:1.5rem; }
+    .agent-card img { width:70px; height:70px; border-radius:50%; object-fit:cover; }
+  </style>
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="container header-container">
+    <a href="index.html" class="logo"><img src="img/logo.webp" alt="Stackly" style="height:44px; width:auto;"></a>
+    <nav><ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="listing.html" class="active">Listings</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li class="mobile-only"><a href="login.html" class="btn btn-outline">Log In</a></li>
+      <li class="mobile-only"><a href="create-listing.html" class="btn btn-primary"><i class="fas fa-plus"></i> List Property</a></li>
+    </ul></nav>
+    <div class="nav-actions">
+      <a href="login.html" class="btn btn-outline">Log In</a><a href="signup.html" class="btn btn-primary" style="margin-left:0.5rem;">Sign Up</a>
+      <a href="create-listing.html" class="btn btn-primary"><i class="fas fa-plus"></i> List Property</a>
+    </div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+  </div>
+</header>
+
+<div class="page-header">
+  <div class="container">
+    <h1>Modern Coastal Villa</h1>
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> <span>/</span>
+      <a href="listing.html">Listings</a> <span>/</span>
+      <span>Modern Coastal Villa</span>
+    </div>
+  </div>
+</div>
+
+<main class="section">
+  <div class="container">
+
+    <!-- Gallery -->
+    <div class="gallery">
+      <div class="gallery-main">
+        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?fm=webp&fit=crop&w=1200&q=30" alt="Main property view" id="mainImg">
+      </div>
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?fm=webp&fit=crop&w=800&q=30" alt="Living room" onclick="swapImg(this)">
+      <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?fm=webp&fit=crop&w=800&q=30" alt="Kitchen" onclick="swapImg(this)">
+    </div>
+
+    <!-- Content + Sidebar -->
+    <div class="property-details-layout">
+
+      <!-- Main Content -->
+      <div>
+        <!-- Header info -->
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem; margin-bottom:2rem;">
+          <div>
+            <div style="display:flex; gap:0.75rem; margin-bottom:0.75rem;">
+              <span class="badge badge-primary">Featured</span>
+              <span class="badge badge-success">For Sale</span>
+            </div>
+            <div style="font-size:2.25rem; font-weight:800; color:var(--primary);">$1,250,000</div>
+          </div>
+          <div style="display:flex; gap:1rem;">
+            <button class="btn btn-outline" id="wishlistBtn"><i class="far fa-heart"></i> Save</button>
+            <button class="btn btn-outline"><i class="fas fa-share-alt"></i> Share</button>
+            <a href="create-listing.html" class="btn btn-primary"><i class="fas fa-edit"></i> Edit</a>
+          </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div style="display:flex; gap:2rem; padding:1.5rem; background:var(--bg-light); border-radius:var(--radius-lg); margin-bottom:2rem; flex-wrap:wrap;">
+          <div style="text-align:center;">
+            <i class="fas fa-bed" style="color:var(--primary); font-size:1.25rem;"></i>
+            <p style="font-size:1.25rem; font-weight:700; margin-top:0.25rem;">4</p>
+            <p style="font-size:0.875rem; color:var(--text-muted);">Bedrooms</p>
+          </div>
+          <div style="text-align:center;">
+            <i class="fas fa-bath" style="color:var(--primary); font-size:1.25rem;"></i>
+            <p style="font-size:1.25rem; font-weight:700; margin-top:0.25rem;">3</p>
+            <p style="font-size:0.875rem; color:var(--text-muted);">Bathrooms</p>
+          </div>
+          <div style="text-align:center;">
+            <i class="fas fa-ruler-combined" style="color:var(--primary); font-size:1.25rem;"></i>
+            <p style="font-size:1.25rem; font-weight:700; margin-top:0.25rem;">3,400</p>
+            <p style="font-size:0.875rem; color:var(--text-muted);">Sq Ft</p>
+          </div>
+          <div style="text-align:center;">
+            <i class="fas fa-car" style="color:var(--primary); font-size:1.25rem;"></i>
+            <p style="font-size:1.25rem; font-weight:700; margin-top:0.25rem;">2</p>
+            <p style="font-size:0.875rem; color:var(--text-muted);">Garage</p>
+          </div>
+          <div style="text-align:center;">
+            <i class="fas fa-calendar" style="color:var(--primary); font-size:1.25rem;"></i>
+            <p style="font-size:1.25rem; font-weight:700; margin-top:0.25rem;">2019</p>
+            <p style="font-size:0.875rem; color:var(--text-muted);">Year Built</p>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tab-nav">
+          <button class="active" onclick="showTab('desc', this)">Description</button>
+          <button onclick="showTab('amenities', this)">Amenities</button>
+          <button onclick="showTab('map', this)">Location</button>
+        </div>
+
+        <div id="tab-desc">
+          <h3 style="margin-bottom:1rem;">About This Property</h3>
+          <p style="color:var(--text-muted); margin-bottom:1rem;">Welcome to this stunning modern coastal villa in the heart of Los Angeles. Designed with elegance and comfort in mind, this property features an open-plan living space with floor-to-ceiling windows that frame panoramic ocean views.</p>
+          <p style="color:var(--text-muted); margin-bottom:1rem;">The gourmet kitchen is equipped with high-end appliances, quartz countertops, and a breakfast island. The master suite includes a spa-like bathroom and private balcony. Three additional bedrooms each have en-suite baths.</p>
+          <p style="color:var(--text-muted);">The outdoor space is a true retreat — a heated infinity pool, outdoor kitchen, and manicured gardens await. Located minutes from world-class dining, shopping, and top-rated schools.</p>
+
+          <h3 style="margin:2rem 0 1rem;">Property Details</h3>
+          <div class="mobile-stack-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+            <div style="padding:1rem; background:var(--bg-light); border-radius:var(--radius-md);">
+              <span style="color:var(--text-muted); font-size:0.875rem;">Property ID</span>
+              <p style="font-weight:600;">#AG-78234</p>
+            </div>
+            <div style="padding:1rem; background:var(--bg-light); border-radius:var(--radius-md);">
+              <span style="color:var(--text-muted); font-size:0.875rem;">Property Type</span>
+              <p style="font-weight:600;">Villa</p>
+            </div>
+            <div style="padding:1rem; background:var(--bg-light); border-radius:var(--radius-md);">
+              <span style="color:var(--text-muted); font-size:0.875rem;">Status</span>
+              <p style="font-weight:600;">For Sale</p>
+            </div>
+            <div style="padding:1rem; background:var(--bg-light); border-radius:var(--radius-md);">
+              <span style="color:var(--text-muted); font-size:0.875rem;">Lot Size</span>
+              <p style="font-weight:600;">8,200 sqft</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="tab-amenities" style="display:none;">
+          <h3 style="margin-bottom:1.5rem;">Property Amenities</h3>
+          <div class="amenity-grid">
+            <div class="amenity-item"><i class="fas fa-swimming-pool"></i> Swimming Pool</div>
+            <div class="amenity-item"><i class="fas fa-car"></i> Parking / Garage</div>
+            <div class="amenity-item"><i class="fas fa-wifi"></i> High-Speed WiFi</div>
+            <div class="amenity-item"><i class="fas fa-dumbbell"></i> Fitness Center</div>
+            <div class="amenity-item"><i class="fas fa-shield-alt"></i> 24/7 Security</div>
+            <div class="amenity-item"><i class="fas fa-fire"></i> Fireplace</div>
+            <div class="amenity-item"><i class="fas fa-fan"></i> Air Conditioning</div>
+            <div class="amenity-item"><i class="fas fa-hot-tub"></i> Jacuzzi / Spa</div>
+            <div class="amenity-item"><i class="fas fa-tree"></i> Garden / Yard</div>
+            <div class="amenity-item"><i class="fas fa-dog"></i> Pet Friendly</div>
+            <div class="amenity-item"><i class="fas fa-solar-panel"></i> Solar Panels</div>
+            <div class="amenity-item"><i class="fas fa-warehouse"></i> Storage Room</div>
+          </div>
+        </div>
+
+        <div id="tab-map" style="display:none;">
+          <h3 style="margin-bottom:1.5rem;">Location</h3>
+          <div class="map-wrapper" style="height:400px;">
+            <iframe 
+              src="https://www.google.com/maps?q=2145+Ocean+Ave,+Los+Angeles,+CA+90291&output=embed" 
+              loading="lazy">
+            </iframe>
+            <div class="map-placeholder">
+              <i class="fas fa-map-marked-alt"></i>
+              <p>Map Loading...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div>
+        <!-- Agent Card -->
+        <div class="sidebar-card">
+          <h3 style="margin-bottom:1.5rem;">Contact Agent</h3>
+          <div class="agent-card">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?fm=webp&fit=facearea&facepad=2&w=200&h=200&q=30" alt="Agent">
+            <div>
+              <strong>Michael Harris</strong>
+              <p style="color:var(--text-muted); font-size:0.875rem;">Senior Agent</p>
+              <div style="display:flex; gap:0.25rem; color:#f59e0b; margin-top:0.25rem;">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+          <form id="contactAgentForm">
+            <div class="form-group">
+              <input class="form-control" type="text" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="email" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="tel" placeholder="Your Phone">
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" rows="4" placeholder="I am interested in this property…">I'd like to schedule a viewing for this property. Please contact me at your earliest convenience.</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
+          </form>
+          <div style="display:flex; gap:1rem; margin-top:1rem;">
+            <a href="tel:+18009994747" class="btn btn-outline" style="flex:1;"><i class="fas fa-phone"></i> Call</a>
+            <a href="#" class="btn btn-outline" style="flex:1;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          </div>
+        </div>
+
+        <!-- Mortgage Calculator -->
+        <div class="sidebar-card">
+          <h3 style="margin-bottom:1.5rem;"><i class="fas fa-calculator" style="color:var(--primary);"></i> Mortgage Calculator</h3>
+          <div class="form-group">
+            <label class="form-label">Home Price ($)</label>
+            <input class="form-control" type="number" value="1250000" id="homePrice">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Down Payment (%)</label>
+            <input class="form-control" type="number" value="20" id="downPayment">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Loan Term (Years)</label>
+            <select class="form-control" id="loanTerm">
+              <option value="30">30 years</option>
+              <option value="20">20 years</option>
+              <option value="15">15 years</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Interest Rate (%)</label>
+            <input class="form-control" type="number" value="6.5" step="0.1" id="interestRate">
+          </div>
+          <button class="btn btn-primary" style="width:100%;" onclick="calcMortgage()">Calculate</button>
+          <div id="mortgageResult" style="display:none; margin-top:1rem; padding:1.5rem; background:var(--bg-light); border-radius:var(--radius-md); text-align:center;">
+            <p style="color:var(--text-muted); font-size:0.875rem;">Estimated Monthly Payment</p>
+            <p id="monthlyPayment" style="font-size:2rem; font-weight:800; color:var(--primary);"></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <a href="index.html"><img src="img/logo.webp" alt="Stackly" style="height:40px; width:auto; filter:brightness(0) invert(1);"></a>
+        </div>
+        <p class="footer-text">We're reimagining how you buy, sell, and rent. It's now easier than ever to get into a place you love.</p>
+        <div class="social-links">
+          <a href="404.html" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="404.html" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="404.html" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="404.html" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer-title">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="listing.html">Listings</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Property Types</h4>
+        <ul class="footer-links">
+          <li><a href="listing.html?type=apartment">Apartments</a></li>
+          <li><a href="listing.html?type=villa">Villas</a></li>
+          <li><a href="listing.html?type=house">Houses</a></li>
+          <li><a href="listing.html?type=plot">Plots</a></li>
+          <li><a href="listing.html?type=commercial">Commercial</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Contact</h4>
+        <ul class="footer-links">
+          <li><i class="fas fa-map-marker-alt" style="color:var(--primary); margin-right:8px;"></i> Salem, Tamil Nadu, India - 636001</li>
+          <li><i class="fas fa-phone" style="color:var(--primary); margin-right:8px;"></i>+91 98765 43210 (24/7 Available)</li>
+          <li><i class="fas fa-envelope" style="color:var(--primary); margin-right:8px;"></i>support@stackly.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Stackly. All rights reserved. | <a href="404.html" style="color:var(--primary);">Privacy Policy</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+<script>
+  function swapImg(el) {
+    const main = document.getElementById('mainImg');
+    const tmp = main.src;
+    main.src = el.src;
+    el.src = tmp;
+  }
+  function showTab(id, btn) {
+    document.querySelectorAll('.tab-nav button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    ['desc','amenities','map'].forEach(t => document.getElementById('tab-'+t).style.display='none');
+    document.getElementById('tab-'+id).style.display='block';
+  }
+  function calcMortgage() {
+    const P = parseFloat(document.getElementById('homePrice').value) * (1 - parseFloat(document.getElementById('downPayment').value)/100);
+    const r = parseFloat(document.getElementById('interestRate').value)/100/12;
+    const n = parseInt(document.getElementById('loanTerm').value)*12;
+    const m = P * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1);
+    document.getElementById('monthlyPayment').textContent = '$' + m.toLocaleString('en-US',{maximumFractionDigits:0});
+    document.getElementById('mortgageResult').style.display='block';
+  }
+  document.getElementById('contactAgentForm').addEventListener('submit', e => {
+    e.preventDefault();
+    alert('Message sent! The agent will contact you shortly.');
+  });
+  document.getElementById('wishlistBtn').addEventListener('click', function() {
+    this.innerHTML = this.innerHTML.includes('far') 
+      ? '<i class="fas fa-heart" style="color:#ef4444;"></i> Saved' 
+      : '<i class="far fa-heart"></i> Save';
+  });
+</script>
+</body>
+</html>
+
+
+
+

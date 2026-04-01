@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real Estate Blog – Stackly</title>
+  <meta name="description" content="Read the latest real estate news, tips, market updates, and guides from the Stackl blog.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .blog-layout { display:grid; grid-template-columns:2fr 1fr; gap:3rem; }
+    .sidebar-widget { background:white; padding:1.5rem; border-radius:var(--radius-lg); border:1px solid var(--border); margin-bottom:2rem; }
+    .sidebar-widget h4 { font-size:1.125rem; margin-bottom:1.25rem; padding-bottom:0.75rem; border-bottom:2px solid var(--primary); }
+    .recent-post { display:flex; gap:1rem; margin-bottom:1rem; padding-bottom:1rem; border-bottom:1px solid var(--border); }
+    .recent-post:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+    .recent-post img { width:70px; height:70px; border-radius:var(--radius-md); object-fit:cover; flex-shrink:0; }
+    .category-list li { padding:0.75rem 0; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; }
+    .category-list li a:hover { color:var(--primary); }
+    .tag-cloud { display:flex; flex-wrap:wrap; gap:0.5rem; }
+    .tag { padding:0.4rem 1rem; background:var(--bg-light); border-radius:var(--radius-full); font-size:0.875rem; color:var(--text-muted); }
+    .tag:hover { background:var(--primary); color:white; }
+    @media(max-width:768px) { .blog-layout { grid-template-columns:1fr; } }
+    .featured-post { background:white; border-radius:var(--radius-lg); overflow:hidden; border:1px solid var(--border); margin-bottom:2.5rem; display:grid; grid-template-columns:1fr 1fr; gap:0; }
+    .featured-post img { width:100%; height:100%; min-height:300px; object-fit:cover; }
+    @media(max-width:768px) { .featured-post { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="container header-container">
+    <a href="index.html" class="logo"><img src="img/logo.webp" alt="Stackly" style="height:44px; width:auto;"></a>
+    <nav><ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="listing.html">Listings</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li class="mobile-only"><a href="login.html" class="btn btn-outline">Log In</a></li>
+      <li class="mobile-only"><a href="create-listing.html" class="btn btn-primary"><i class="fas fa-plus"></i> List Property</a></li>
+    </ul></nav>
+    <div class="nav-actions">
+      <a href="login.html" class="btn btn-outline">Log In</a>
+      <a href="create-listing.html" class="btn btn-primary"><i class="fas fa-plus"></i> List Property</a>
+    </div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+  </div>
+</header>
+
+<div class="page-header">
+  <div class="container">
+    <h1>Real Estate Blog</h1>
+  </div>
+</div>
+
+<main class="section">
+  <div class="container">
+    <div class="blog-layout">
+
+      <!-- Posts -->
+      <div>
+
+        <!-- Featured Post -->
+        <div class="featured-post">
+          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?fm=webp&fit=crop&w=1000&q=30" alt="2026 Real Estate Market Forecast">
+          <div style="padding:2.5rem;">
+            <span class="badge badge-primary" style="margin-bottom:1rem; display:inline-block;">Market Update</span>
+            <h2 style="font-size:1.625rem; margin-bottom:1rem;"><a href="404.html" style="color:var(--secondary);">2026 Real Estate Market Forecast: What Buyers Need to Know</a></h2>
+            <p style="color:var(--text-muted); margin-bottom:1.5rem;">As interest rates stabilize and inventory improves, 2026 is shaping up to be a pivotal year for real estate. Here's what experts are predicting…</p>
+            <div class="blog-meta">
+              <span><i class="fas fa-user"></i> Emily Carter</span>
+              <span><i class="fas fa-calendar"></i> March 20, 2026</span>
+              <span><i class="fas fa-clock"></i> 6 min read</span>
+            </div>
+            <a href="404.html" class="btn btn-primary" style="margin-top:1.5rem;">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Blog Grid -->
+        <div class="grid grid-cols-2 mobile-stack-grid" style="grid-template-columns:1fr 1fr;">
+
+          <div class="blog-card">
+            <img class="blog-img" src="https://images.unsplash.com/photo-1554995207-c18c203602cb?fm=webp&fit=crop&w=800&q=30" alt="First-Time Buyer Tips" loading="lazy">
+            <div class="blog-content">
+              <span class="badge badge-success" style="margin-bottom:0.75rem; display:inline-block;">Tips</span>
+              <h3 class="blog-title"><a href="404.html">10 Essential Tips for First-Time Home Buyers</a></h3>
+              <div class="blog-meta">
+                <span><i class="fas fa-user"></i> David Park</span>
+                <span><i class="fas fa-calendar"></i> Mar 15, 2026</span>
+              </div>
+              <p style="color:var(--text-muted); font-size:0.9rem; margin-top:0.75rem;">Buying your first home is exciting but can be overwhelming. Here are 10 proven tips to navigate the process smoothly…</p>
+              <a href="404.html" style="color:var(--primary); font-weight:600; margin-top:1rem; display:inline-block;">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <div class="blog-card">
+            <img class="blog-img" src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?fm=webp&fit=crop&w=800&q=30" alt="Home Staging" loading="lazy">
+            <div class="blog-content">
+              <span class="badge badge-primary" style="background:#8b5cf6; margin-bottom:0.75rem; display:inline-block;">Selling</span>
+              <h3 class="blog-title"><a href="404.html">How to Stage Your Home for a Quick Sale</a></h3>
+              <div class="blog-meta">
+                <span><i class="fas fa-user"></i> Maria Lopez</span>
+                <span><i class="fas fa-calendar"></i> Mar 10, 2026</span>
+              </div>
+              <p style="color:var(--text-muted); font-size:0.9rem; margin-top:0.75rem;">Staged homes sell 30% faster and for higher prices. Learn the insider secrets used by top real estate agents…</p>
+              <a href="404.html" style="color:var(--primary); font-weight:600; margin-top:1rem; display:inline-block;">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <div class="blog-card">
+            <img class="blog-img" src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?fm=webp&fit=crop&w=800&q=30" alt="Investment Property" loading="lazy">
+            <div class="blog-content">
+              <span class="badge" style="background:#f59e0b; color:white; margin-bottom:0.75rem; display:inline-block;">Investment</span>
+              <h3 class="blog-title"><a href="404.html">Building Wealth Through Real Estate Investment</a></h3>
+              <div class="blog-meta">
+                <span><i class="fas fa-user"></i> James Wu</span>
+                <span><i class="fas fa-calendar"></i> Mar 5, 2026</span>
+              </div>
+              <p style="color:var(--text-muted); font-size:0.9rem; margin-top:0.75rem;">Real estate remains one of the safest long-term investments. Here's how to start building your portfolio today…</p>
+              <a href="404.html" style="color:var(--primary); font-weight:600; margin-top:1rem; display:inline-block;">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <div class="blog-card">
+            <img class="blog-img" src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?fm=webp&fit=crop&w=800&q=30" alt="Home Renovation" loading="lazy">
+            <div class="blog-content">
+              <span class="badge badge-success" style="margin-bottom:0.75rem; display:inline-block;">Tips</span>
+              <h3 class="blog-title"><a href="404.html">Top 5 Renovations That Add the Most Value</a></h3>
+              <div class="blog-meta">
+                <span><i class="fas fa-user"></i> Anna Johnson</span>
+                <span><i class="fas fa-calendar"></i> Feb 28, 2026</span>
+              </div>
+              <p style="color:var(--text-muted); font-size:0.9rem; margin-top:0.75rem;">Not all renovations are created equal. These five upgrades consistently deliver the highest ROI for homeowners…</p>
+              <a href="404.html" style="color:var(--primary); font-weight:600; margin-top:1rem; display:inline-block;">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <div class="blog-card">
+            <img class="blog-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fm=webp&fit=crop&w=800&q=30" alt="Agent Guide" loading="lazy">
+            <div class="blog-content">
+              <span class="badge badge-primary" style="background:#8b5cf6; margin-bottom:0.75rem; display:inline-block;">Agents</span>
+              <h3 class="blog-title"><a href="404.html">How to Choose the Right Real Estate Agent</a></h3>
+              <div class="blog-meta">
+                <span><i class="fas fa-user"></i> Chris Davis</span>
+                <span><i class="fas fa-calendar"></i> Feb 20, 2026</span>
+              </div>
+              <p style="color:var(--text-muted); font-size:0.9rem; margin-top:0.75rem;">The right agent can save you thousands. Here's exactly what to look for and which questions to ask…</p>
+              <a href="404.html" style="color:var(--primary); font-weight:600; margin-top:1rem; display:inline-block;">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <div class="blog-card">
+            <img class="blog-img" src="https://images.unsplash.com/photo-1565402170291-8491f14678db?fm=webp&fit=crop&w=800&q=30" alt="Mortgage Guide" loading="lazy">
+            <div class="blog-content">
+              <span class="badge" style="background:#f59e0b; color:white; margin-bottom:0.75rem; display:inline-block;">Finance</span>
+              <h3 class="blog-title"><a href="404.html">Understanding Mortgages: A Complete Guide</a></h3>
+              <div class="blog-meta">
+                <span><i class="fas fa-user"></i> Linda Stone</span>
+                <span><i class="fas fa-calendar"></i> Feb 15, 2026</span>
+              </div>
+              <p style="color:var(--text-muted); font-size:0.9rem; margin-top:0.75rem;">Mortgages don't have to be confusing. We break down every term, loan type, and scenario in simple language…</p>
+              <a href="#" style="color:var(--primary); font-weight:600; margin-top:1rem; display:inline-block;">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside>
+
+        <div class="sidebar-widget">
+          <h4>Search Blog</h4>
+          <div style="display:flex; gap:0.5rem;">
+            <input class="form-control" type="text" placeholder="Search articles…" style="flex:1;">
+            <button class="btn btn-primary" style="padding:0.75rem 1rem;"><i class="fas fa-search"></i></button>
+          </div>
+        </div>
+
+        <div class="sidebar-widget">
+          <h4>Categories</h4>
+          <ul class="category-list">
+            <li><a href="404.html">Market Updates</a><span style="color:var(--text-muted);">12</span></li>
+            <li><a href="404.html">Buying Tips</a><span style="color:var(--text-muted);">18</span></li>
+            <li><a href="404.html">Selling Guide</a><span style="color:var(--text-muted);">9</span></li>
+            <li><a href="404.html">Investment</a><span style="color:var(--text-muted);">14</span></li>
+            <li><a href="404.html">Renovation</a><span style="color:var(--text-muted);">7</span></li>
+            <li><a href="404.html">Finance</a><span style="color:var(--text-muted);">11</span></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-widget">
+          <h4>Recent Posts</h4>
+          <div class="recent-post">
+            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?fm=webp&fit=crop&w=150&h=150&q=30" alt="">
+            <div>
+              <a href="404.html" style="font-weight:600; font-size:0.9rem;">2026 Real Estate Market Forecast</a>
+              <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.25rem;">March 20, 2026</p>
+            </div>
+          </div>
+          <div class="recent-post">
+            <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?fm=webp&fit=crop&w=150&h=150&q=30" alt="">
+            <div>
+              <a href="404.html" style="font-weight:600; font-size:0.9rem;">10 Tips for First-Time Buyers</a>
+              <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.25rem;">March 15, 2026</p>
+            </div>
+          </div>
+          <div class="recent-post">
+            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?fm=webp&fit=crop&w=150&h=150&q=30" alt="">
+            <div>
+              <a href="404.html" style="font-weight:600; font-size:0.9rem;">Stage Your Home for a Quick Sale</a>
+              <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.25rem;">March 10, 2026</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-widget">
+          <h4>Popular Tags</h4>
+          <div class="tag-cloud">
+            <a href="404.html" class="tag">Real Estate</a>
+            <a href="404.html" class="tag">Buying</a>
+            <a href="404.html" class="tag">Selling</a>
+            <a href="404.html" class="tag">Mortgage</a>
+            <a href="404.html" class="tag">Investment</a>
+            <a href="404.html" class="tag">Market</a>
+            <a href="404.html" class="tag">Tips</a>
+            <a href="404.html" class="tag">Renovation</a>
+            <a href="404.html" class="tag">Agents</a>
+          </div>
+        </div>
+
+        <div class="sidebar-widget" style="background:var(--primary); color:white; text-align:center;">
+          <h4 style="color:white; border-bottom-color:rgba(255,255,255,0.3);">Newsletter</h4>
+          <p style="margin-bottom:1rem; opacity:0.9; font-size:0.9rem;">Get weekly market updates straight to your inbox.</p>
+          <form action="404.html" method="GET">
+            <input class="form-control" type="email" placeholder="Your email address" style="margin-bottom:0.75rem;" required>
+            <button type="submit" class="btn" style="width:100%; background:white; color:var(--primary); font-weight:600;">Subscribe</button>
+          </form>
+        </div>
+
+      </aside>
+
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <a href="index.html"><img src="img/logo.webp" alt="Stackly" style="height:40px; width:auto; filter:brightness(0) invert(1);"></a>
+        </div>
+        <p class="footer-text">We're reimagining how you buy, sell, and rent. It's now easier than ever to get into a place you love.</p>
+        <div class="social-links">
+          <a href="404.html" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="404.html" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="404.html" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="404.html" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer-title">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="listing.html">Listings</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Property Types</h4>
+        <ul class="footer-links">
+          <li><a href="listing.html?type=apartment">Apartments</a></li>
+          <li><a href="listing.html?type=villa">Villas</a></li>
+          <li><a href="listing.html?type=house">Houses</a></li>
+          <li><a href="listing.html?type=plot">Plots</a></li>
+          <li><a href="listing.html?type=commercial">Commercial</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Contact</h4>
+        <ul class="footer-links">
+          <li><i class="fas fa-map-marker-alt" style="color:var(--primary); margin-right:8px;"></i> Salem, Tamil Nadu, India - 636001</li>
+          <li><i class="fas fa-phone" style="color:var(--primary); margin-right:8px;"></i>+91 98765 43210 (24/7 Available)</li>
+          <li><i class="fas fa-envelope" style="color:var(--primary); margin-right:8px;"></i>support@stackly.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Stackly. All rights reserved. | <a href="404.html" style="color:var(--primary);">Privacy Policy</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
+
+
+
+

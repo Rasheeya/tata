@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Listing – Stackly</title>
+  <meta name="description"
+    content="Create a new property listing on Stackly. Reach millions of buyers and renters by listing your property today.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .step-indicator {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 3rem;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .step-num {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--bg-light);
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .step.active .step-num {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+
+    .step.done .step-num {
+      background: var(--success);
+      border-color: var(--success);
+      color: white;
+    }
+
+    .step-line {
+      width: 80px;
+      height: 2px;
+      background: var(--border);
+    }
+
+    .step-label {
+      font-size: 0.75rem;
+      text-align: center;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+
+    .step-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .image-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .preview-img {
+      height: 100px;
+      background: var(--bg-light);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      border: 2px dashed var(--border);
+    }
+
+    .preview-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .preview-img .remove-img {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      background: var(--danger);
+      color: white;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      cursor: pointer;
+    }
+
+    .form-section {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+
+    .form-section h3 {
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .form-section h3 i {
+      color: var(--primary);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .amenity-checkboxes {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+
+    .amenity-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .amenity-checkbox input {
+      flex-shrink: 0;
+    }
+
+    .amenity-checkbox:has(input:checked) {
+      border-color: var(--primary);
+      background: rgba(0, 106, 255, 0.05);
+      color: var(--primary);
+    }
+
+    @media(max-width:768px) {
+      .form-section {
+        padding: 1.5rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .amenity-checkboxes {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+
+      .image-preview-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(max-width:480px) {
+      .form-section {
+        padding: 1.25rem;
+      }
+
+      .amenity-checkboxes {
+        grid-template-columns: 1fr;
+      }
+
+      .step-line {
+        width: 40px;
+      }
+
+      .step-label {
+        font-size: 0.65rem;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <header class="header" id="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo"><img src="img/logo.webp" alt="Stackly"
+          style="height:44px; width:auto;"></a>
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="listing.html">Listings</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li class="mobile-only"><a href="login.html" class="btn btn-outline">Log In</a></li>
+          <li class="mobile-only"><a href="create-listing.html" class="btn btn-primary"><i class="fas fa-plus"></i> List
+              Property</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-outline">Log In</a>
+        <a href="create-listing.html" class="btn btn-primary"><i class="fas fa-plus"></i> List Property</a>
+      </div>
+      <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Create a New Listing</h1>
+      <div class="breadcrumb">
+      </div>
+    </div>
+  </div>
+
+  <main class="section">
+    <div class="container" style="max-width:900px;">
+
+      <!-- Step Indicator -->
+      <div class="step-indicator">
+        <div class="step-wrapper">
+          <div class="step done" id="step1">
+            <div class="step-num"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="step-label">Basic Info</div>
+        </div>
+        <div class="step-line" style="margin-top:-10px;"></div>
+        <div class="step-wrapper">
+          <div class="step active" id="step2">
+            <div class="step-num">2</div>
+          </div>
+          <div class="step-label">Details</div>
+        </div>
+        <div class="step-line" style="margin-top:-10px;"></div>
+        <div class="step-wrapper">
+          <div class="step" id="step3">
+            <div class="step-num">3</div>
+          </div>
+          <div class="step-label">Photos</div>
+        </div>
+        <div class="step-line" style="margin-top:-10px;"></div>
+        <div class="step-wrapper">
+          <div class="step" id="step4">
+            <div class="step-num">4</div>
+          </div>
+          <div class="step-label">Review</div>
+        </div>
+      </div>
+
+      <form id="createListingForm" novalidate>
+
+        <!-- Section 1: Basic Information -->
+        <div class="form-section">
+          <h3><i class="fas fa-info-circle"></i> Basic Information</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Listing Title *</label>
+              <input class="form-control" type="text" placeholder="e.g., Modern 3-Bedroom Villa in Miami" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Property Type *</label>
+              <select class="form-control" required>
+                <option value="">Select Type</option>
+                <option>Apartment</option>
+                <option>Villa</option>
+                <option>House</option>
+                <option>Plot / Land</option>
+                <option>Commercial</option>
+                <option>Condo</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Listing Status *</label>
+              <select class="form-control" required>
+                <option value="">Select Status</option>
+                <option>For Sale</option>
+                <option>For Rent</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Price ($) *</label>
+              <input class="form-control" type="number" placeholder="e.g., 850000" required>
+            </div>
+            <div class="form-group" style="grid-column:1/-1;">
+              <label class="form-label">Description *</label>
+              <textarea class="form-control" rows="5" placeholder="Describe the property, neighborhood, key features…"
+                required></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Location -->
+        <div class="form-section">
+          <h3><i class="fas fa-map-marker-alt"></i> Location Details</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Street Address *</label>
+              <input class="form-control" type="text" placeholder="123 Main Street" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">City *</label>
+              <input class="form-control" type="text" placeholder="e.g., Los Angeles" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">State / Province</label>
+              <input class="form-control" type="text" placeholder="e.g., California">
+            </div>
+            <div class="form-group">
+              <label class="form-label">ZIP / Postal Code</label>
+              <input class="form-control" type="text" placeholder="e.g., 90210">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Country</label>
+              <select class="form-control">
+                <option>United States</option>
+                <option>Canada</option>
+                <option>United Kingdom</option>
+                <option>Australia</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Property Details -->
+        <div class="form-section">
+          <h3><i class="fas fa-home"></i> Property Specifications</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Bedrooms</label>
+              <select class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option selected>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6+</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Bathrooms</label>
+              <select class="form-control">
+                <option>1</option>
+                <option selected>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5+</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Area (sq ft)</label>
+              <input class="form-control" type="number" placeholder="e.g., 2500">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Garage / Parking</label>
+              <select class="form-control">
+                <option>None</option>
+                <option>1 Car</option>
+                <option>2 Cars</option>
+                <option>3+ Cars</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Year Built</label>
+              <input class="form-control" type="number" placeholder="e.g., 2015" min="1900" max="2026">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Lot Size (sq ft)</label>
+              <input class="form-control" type="number" placeholder="e.g., 8000">
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 4: Amenities -->
+        <div class="form-section">
+          <h3><i class="fas fa-star"></i> Amenities</h3>
+          <div class="amenity-checkboxes">
+            <label class="amenity-checkbox"><input type="checkbox"> <i class="fas fa-swimming-pool"></i> Swimming
+              Pool</label>
+            <label class="amenity-checkbox"><input type="checkbox" checked> <i class="fas fa-car"></i> Parking</label>
+            <label class="amenity-checkbox"><input type="checkbox" checked> <i class="fas fa-wifi"></i> WiFi</label>
+            <label class="amenity-checkbox"><input type="checkbox"> <i class="fas fa-dumbbell"></i> Gym</label>
+            <label class="amenity-checkbox"><input type="checkbox"> <i class="fas fa-shield-alt"></i> Security</label>
+            <label class="amenity-checkbox"><input type="checkbox"> <i class="fas fa-fire"></i> Fireplace</label>
+            <label class="amenity-checkbox"><input type="checkbox" checked> <i class="fas fa-fan"></i> Air
+              Conditioning</label>
+            <label class="amenity-checkbox"><input type="checkbox"> <i class="fas fa-hot-tub"></i> Jacuzzi</label>
+            <label class="amenity-checkbox"><input type="checkbox"> <i class="fas fa-dog"></i> Pet Friendly</label>
+            <label class="amenity-checkbox"><input type="checkbox"> <i class="fas fa-solar-panel"></i> Solar
+              Panels</label>
+            <label class="amenity-checkbox"><input type="checkbox"> <i class="fas fa-tree"></i> Garden</label>
+            <label class="amenity-checkbox"><input type="checkbox"> <i class="fas fa-warehouse"></i> Storage</label>
+          </div>
+        </div>
+
+        <!-- Section 5: Images -->
+        <div class="form-section">
+          <h3><i class="fas fa-images"></i> Property Images</h3>
+          <div class="upload-zone" id="uploadZone" onclick="document.getElementById('imageInput').click()">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <h4 style="margin-bottom:0.5rem;">Drag & Drop photos here</h4>
+            <p style="color:var(--text-muted); font-size:0.875rem;">or click to browse. Supports JPG, PNG, WEBP (max 5MB
+              each)</p>
+            <input type="file" id="imageInput" multiple accept="image/*" style="display:none;"
+              onchange="previewImages(this)">
+          </div>
+          <div class="image-preview-grid" id="imagePreviewGrid"></div>
+        </div>
+
+        <!-- CTA -->
+        <div style="display:flex; gap:1rem; justify-content:flex-end; flex-wrap:wrap;">
+          <a href="javascript:history.back()"><button type="button" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Back</button></a>
+          <a href="404.html"><button type="button" class="btn btn-outline"><i class="fas fa-save"></i> Save
+              Draft</button></a>
+          <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Publish Listing</button>
+        </div>
+
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <a href="index.html"><img src="img/logo.webp" alt="Stackly"
+                style="height:40px; width:auto; filter:brightness(0) invert(1);"></a>
+          </div>
+          <p class="footer-text">We're reimagining how you buy, sell, and rent. It's now easier than ever to get into a
+            place you love.</p>
+          <div class="social-links">
+            <a href="404.html" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="404.html" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="404.html" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="404.html" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="listing.html">Listings</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Property Types</h4>
+          <ul class="footer-links">
+            <li><a href="listing.html?type=apartment">Apartments</a></li>
+            <li><a href="listing.html?type=villa">Villas</a></li>
+            <li><a href="listing.html?type=house">Houses</a></li>
+            <li><a href="listing.html?type=plot">Plots</a></li>
+            <li><a href="listing.html?type=commercial">Commercial</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Contact</h4>
+          <ul class="footer-links">
+            <li><i class="fas fa-map-marker-alt" style="color:var(--primary); margin-right:8px;"></i> Salem, Tamil Nadu,
+              India - 636001</li>
+            <li><i class="fas fa-phone" style="color:var(--primary); margin-right:8px;"></i>+91 98765 43210 (24/7
+              Available)</li>
+            <li><i class="fas fa-envelope" style="color:var(--primary); margin-right:8px;"></i>support@stackly.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026  Stackly . All rights reserved. | <a href="404.html"
+            style="color:var(--primary);">Privacy Policy</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script>
+    function previewImages(input) {
+      const grid = document.getElementById('imagePreviewGrid');
+      const files = Array.from(input.files);
+      files.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = e => {
+          const div = document.createElement('div');
+          div.className = 'preview-img';
+          div.innerHTML = `<img src="${e.target.result}" alt="preview"><span class="remove-img" onclick="this.parentElement.remove()"><i class="fas fa-times"></i></span>`;
+          grid.appendChild(div);
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    const zone = document.getElementById('uploadZone');
+    zone.addEventListener('dragover', e => { e.preventDefault(); zone.style.borderColor = 'var(--primary)'; });
+    zone.addEventListener('dragleave', () => { zone.style.borderColor = 'var(--border)'; });
+    zone.addEventListener('drop', e => {
+      e.preventDefault();
+      zone.style.borderColor = 'var(--border)';
+      const input = document.getElementById('imageInput');
+      input.files = e.dataTransfer.files;
+      previewImages(input);
+    });
+
+    document.getElementById('createListingForm').addEventListener('submit', e => {
+      e.preventDefault();
+      window.location.href = '404.html';
+    });
+  </script>
+</body>
+
+</html>

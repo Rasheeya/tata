@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard – Stackly</title>
+  <meta name="description" content="Manage your properties, view analytics, and handle inquiries from your Stackly dashboard.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { background:var(--bg-light); }
+    .db-sidebar-logo { font-size:1.375rem; font-weight:800; color:white; display:flex; align-items:center; gap:0.5rem; padding-bottom:2rem; border-bottom:1px solid rgba(255,255,255,0.1); margin-bottom:2rem; }
+    .db-sidebar-logo span { color:var(--primary); }
+    .nav-section-title { font-size:0.7rem; text-transform:uppercase; letter-spacing:2px; color:rgba(255,255,255,0.4); margin:1.5rem 0 0.5rem; }
+    .mini-chart { height:60px; display:flex; align-items:flex-end; gap:3px; }
+    .bar { flex:1; background:rgba(0,106,255,0.2); border-radius:2px; transition:var(--transition); }
+    .bar:hover { background:var(--primary); }
+    .table-container { background:white; border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-sm); }
+    .status-pill { padding:0.25rem 0.75rem; border-radius:var(--radius-full); font-size:0.75rem; font-weight:600; }
+    .status-active { background:#d1fae5; color:#065f46; }
+    .status-pending { background:#fef3c7; color:#92400e; }
+    .status-inactive { background:#fee2e2; color:#991b1b; }
+    .avatar { width:36px; height:36px; border-radius:50%; object-fit:cover; }
+    .db-search { display:flex; align-items:center; gap:0.5rem; background:var(--bg-light); border:1px solid var(--border); border-radius:var(--radius-md); padding:0.5rem 1rem; }
+    .db-search input { border:none; background:transparent; font-family:inherit; font-size:0.9rem; outline:none; color:var(--secondary); }
+    .progress-bar { height:6px; background:var(--bg-light); border-radius:3px; overflow:hidden; }
+    .progress-fill { height:100%; background:var(--primary); border-radius:3px; }
+    /* Mobile overrides handled in style.css */
+  </style>
+  <style>
+    /* Additional responsive styles for dashboard */
+    @media (max-width: 1024px) {
+      .dashboard-sidebar {
+        width: 250px;
+      }
+      .dashboard-main {
+        padding: 0 2rem 2rem;
+      }
+      .stat-cards {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+      .mobile-stack-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      html, body {
+        overflow-x: hidden;
+      }
+      .dashboard-layout {
+        width: 100%;
+        overflow-x: hidden;
+      }
+      .dashboard-main {
+        width: 100%;
+        box-sizing: border-box;
+      }
+      #sidebarToggle {
+        display: block !important;
+      }
+      .dashboard-sidebar {
+        position: fixed;
+        transform: translateX(-100%);
+        z-index: 1001;
+      }
+      .dashboard-sidebar.active {
+        transform: translateX(0);
+      }
+      .mobile-overlay {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+      .mobile-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .dashboard-sidebar.active ~ .dashboard-main {
+        overflow: hidden;
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 0;
+      }
+      .dashboard-main {
+        margin-left: 0;
+        padding: 1rem;
+      }
+      .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1rem;
+        margin: 0 -1rem 1.5rem;
+      }
+      .dashboard-header > div {
+        width: 100%;
+      }
+      .dashboard-header > div:first-child {
+        justify-content: space-between;
+        align-items: center;
+      }
+      .stat-cards {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .stat-card {
+        padding: 1rem;
+        gap: 1rem;
+      }
+      .stat-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+      }
+      .stat-value {
+        font-size: 1.25rem;
+      }
+      .mobile-stack-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem;
+      }
+      .mini-chart {
+        height: 80px;
+      }
+      .table-container {
+        margin: 0 -1rem;
+        border-radius: 0;
+      }
+      .data-table th, .data-table td {
+        padding: 0.75rem;
+        font-size: 0.875rem;
+      }
+      .action-btns {
+        gap: 0.5rem;
+      }
+      .action-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+      }
+      .inquiry-card {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+      }
+      .inquiry-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+        border-top: 1px solid var(--border);
+        padding-top: 1rem;
+        width: 100%;
+      }
+      .inquiry-actions .btn {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      html, body {
+        overflow-x: hidden;
+      }
+      .dashboard-layout {
+        width: 100%;
+        overflow-x: hidden;
+      }
+      .dashboard-main {
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .dashboard-main {
+        padding: 0.5rem;
+      }
+      .dashboard-header {
+        padding: 0.75rem;
+        margin: 0 -0.5rem 1rem;
+      }
+      .dashboard-header h2 {
+        font-size: 1rem;
+      }
+      .dashboard-header p {
+        font-size: 0.75rem;
+      }
+      .stat-card {
+        padding: 0.75rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+      }
+      .stat-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+      .stat-value {
+        font-size: 1.125rem;
+      }
+      .mini-chart {
+        height: 60px;
+      }
+      .data-table tr {
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+      }
+      .data-table td {
+        padding: 0.5rem 0;
+        font-size: 0.8rem;
+      }
+      .data-table td::before {
+        font-size: 0.7rem;
+      }
+      .inquiry-card {
+        padding: 0.75rem;
+      }
+      .inquiry-content p {
+        font-size: 0.875rem;
+      }
+      .db-search {
+        padding: 0.375rem 0.75rem;
+      }
+      .db-search input {
+        font-size: 0.875rem;
+      }
+    }
+  </style>
+  </style>
+</head>
+<body>
+
+<div class="dashboard-layout">
+  <div id="mobileOverlay" class="mobile-overlay"></div>
+
+  <!-- Sidebar -->
+  <aside class="dashboard-sidebar" id="dashboardSidebar">
+    <div class="db-sidebar-logo">
+      <a href="index.html" title="Go to Home" style="display:inline-flex; cursor:pointer;">
+        <img src="img/logo.webp" alt="Stackly" style="height:36px; width:auto; filter:brightness(0) invert(1);">
+      </a>
+    </div>
+
+    <!-- User info -->
+    <div style="display:flex; gap:1rem; align-items:center; padding:1rem; background:rgba(255,255,255,0.05); border-radius:var(--radius-md); margin-bottom:1rem;">
+      <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?fm=webp&fit=facearea&facepad=2&w=100&h=100&q=30" alt="User" style="width:44px;height:44px;border-radius:50%;object-fit:cover;">
+      <div>
+        <p style="font-weight:600; font-size:0.9rem;">Michael Harris</p>
+        <p style="font-size:0.75rem; color:rgba(255,255,255,0.5);">Property Owner</p>
+      </div>
+    </div>
+
+    <p class="nav-section-title">Main</p>
+    <nav class="dashboard-nav">
+      <a href="404.html" class="active" data-page="overview"><i class="fas fa-th-large"></i> Overview</a>
+      <a href="404.html" data-page="listings"><i class="fas fa-list"></i> My Listings</a>
+      <a href="404.html" data-page="messages"><i class="fas fa-envelope"></i> Messages</a>
+      <a href="404.html" data-page="saved"><i class="fas fa-heart"></i> Saved Properties</a>
+    </nav>
+
+    <p class="nav-section-title">Account</p>
+    <nav class="dashboard-nav">
+      <a href="404.html" data-page="profile"><i class="fas fa-user-circle"></i> Profile</a>
+      <a href="404.html" data-page="settings"><i class="fas fa-cog"></i> Settings</a>
+      <a href="login.html"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+    </nav>
+  </aside>
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <!-- Main Content -->
+  <main class="dashboard-main">
+
+    <!-- Top Header -->
+    <div class="dashboard-header">
+      <div style="display:flex; align-items:center; gap:1rem;">
+        <button id="sidebarToggle" style="display:none; background:none; border:none; font-size:1.25rem; cursor:pointer; color:var(--secondary);">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div>
+          <h2 style="font-size:1.25rem;">Good afternoon, Michael</h2>
+          <p style="font-size:0.875rem; color:var(--text-muted);">Thursday, March 26, 2026</p>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:1rem;">
+        <div class="db-search">
+          <i class="fas fa-search" style="color:var(--text-muted);"></i>
+          <input type="text" placeholder="Search…">
+        </div>
+        <button style="position:relative; background:none; border:none; font-size:1.25rem; cursor:pointer; color:var(--text-muted);">
+          <i class="fas fa-bell"></i>
+          
+        </button>
+        <a href="create-listing.html" class="btn btn-primary" style="white-space:nowrap;"><i class="fas fa-plus"></i> New Listing</a>
+      </div>
+    </div>
+
+    <!-- Stat Cards -->
+    <div class="stat-cards">
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fas fa-home"></i></div>
+        <div>
+          <p style="font-size:0.875rem; color:var(--text-muted);">My Listings</p>
+          <p class="stat-value">8</p>
+          <p style="font-size:0.75rem; color:var(--success);"><i class="fas fa-arrow-up"></i> +2 this month</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background:rgba(16,185,129,0.1); color:var(--success);"><i class="fas fa-eye"></i></div>
+        <div>
+          <p style="font-size:0.875rem; color:var(--text-muted);">Total Views</p>
+          <p class="stat-value">3,842</p>
+          <p style="font-size:0.75rem; color:var(--success);"><i class="fas fa-arrow-up"></i> +14% this week</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background:rgba(245,158,11,0.1); color:var(--warning);"><i class="fas fa-envelope"></i></div>
+        <div>
+          <p style="font-size:0.875rem; color:var(--text-muted);">Inquiries</p>
+          <p class="stat-value">24</p>
+          <p style="font-size:0.75rem; color:var(--warning);"><i class="fas fa-minus"></i> Same as last week</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background:rgba(239,68,68,0.1); color:var(--danger);"><i class="fas fa-heart"></i></div>
+        <div>
+          <p style="font-size:0.875rem; color:var(--text-muted);">Saved</p>
+          <p class="stat-value">17</p>
+          <p style="font-size:0.75rem; color:var(--success);"><i class="fas fa-arrow-up"></i> +5 this week</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="mobile-stack-grid" style="grid-template-columns:2fr 1fr; margin-bottom:1.5rem;">
+      <div style="background:white; padding:1.5rem; border-radius:var(--radius-lg); box-shadow:var(--shadow-sm);">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+          <h3>Property Views</h3>
+          <select style="border:1px solid var(--border); border-radius:var(--radius-md); padding:0.4rem 0.75rem; font-size:0.875rem;">
+            <option>Last 7 days</option>
+            <option>Last 30 days</option>
+          </select>
+        </div>
+        <div class="mini-chart" style="height:100px;">
+          <div class="bar" style="height:40%;"></div>
+          <div class="bar" style="height:65%;"></div>
+          <div class="bar" style="height:55%;"></div>
+          <div class="bar" style="height:80%;"></div>
+          <div class="bar" style="height:70%;"></div>
+          <div class="bar" style="height:90%; background:var(--primary);"></div>
+          <div class="bar" style="height:75%;"></div>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-top:0.5rem; font-size:0.75rem; color:var(--text-muted);">
+          <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+        </div>
+      </div>
+      <div style="background:white; padding:1.5rem; border-radius:var(--radius-lg); box-shadow:var(--shadow-sm);">
+        <h3 style="margin-bottom:1.5rem;">Listing Performance</h3>
+        <div style="display:flex; flex-direction:column; gap:1.25rem;">
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:0.875rem; margin-bottom:0.5rem;">
+              <span>Modern Coastal Villa</span><strong>72%</strong>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:72%;"></div></div>
+          </div>
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:0.875rem; margin-bottom:0.5rem;">
+              <span>Sky-High Apt</span><strong>55%</strong>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:55%;"></div></div>
+          </div>
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:0.875rem; margin-bottom:0.5rem;">
+              <span>Waterfront Home</span><strong>38%</strong>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:38%;"></div></div>
+          </div>
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:0.875rem; margin-bottom:0.5rem;">
+              <span>Grand Estate</span><strong>90%</strong>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:90%;"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- My Listings Table -->
+    <div class="table-container" style="margin-bottom:1.5rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; padding:1.5rem;">
+        <h3>My Listings</h3>
+        <a href="create-listing.html" class="btn btn-primary" style="font-size:0.875rem; padding:0.625rem 1.25rem;">
+          <i class="fas fa-plus"></i> Add New
+        </a>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Price</th>
+            <th class="mobile-hide">Status</th>
+            <th class="mobile-hide">Views</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Property">
+              <div style="display:flex; align-items:center; gap:0.75rem;">
+                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?fm=webp&fit=crop&w=150&h=100&q=30" alt="" style="width:50px;height:40px;object-fit:cover;border-radius:4px;">
+                <span style="font-weight:500;">Modern Coastal Villa</span>
+              </div>
+            </td>
+            <td data-label="Type">Villa</td>
+            <td data-label="Price" style="font-weight:600; color:var(--primary);">$1,250,000</td>
+            <td data-label="Status"><span class="status-pill status-active">Active</span></td>
+            <td data-label="Views">984</td>
+            <td data-label="Actions">
+              <div class="action-btns">
+                <a href="property.html" class="action-btn" style="background:var(--primary);" title="View"><i class="fas fa-eye"></i></a>
+                <a href="create-listing.html" class="action-btn" style="background:var(--warning);" title="Edit"><i class="fas fa-edit"></i></a>
+                <button class="action-btn" style="background:var(--danger);" title="Delete" onclick="deleteRow(this)"><i class="fas fa-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Property">
+              <div style="display:flex; align-items:center; gap:0.75rem;">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?fm=webp&fit=crop&w=150&h=100&q=30" alt="" style="width:50px;height:40px;object-fit:cover;border-radius:4px;">
+                <span style="font-weight:500;">Sky-High Luxury Apt</span>
+              </div>
+            </td>
+            <td data-label="Type">Apartment</td>
+            <td data-label="Price" style="font-weight:600; color:var(--primary);">$5,200/mo</td>
+            <td data-label="Status"><span class="status-pill status-active">Active</span></td>
+            <td data-label="Views">721</td>
+            <td data-label="Actions">
+              <div class="action-btns">
+                <a href="property.html" class="action-btn" style="background:var(--primary);"><i class="fas fa-eye"></i></a>
+                <a href="create-listing.html" class="action-btn" style="background:var(--warning);"><i class="fas fa-edit"></i></a>
+                <button class="action-btn" style="background:var(--danger);" onclick="deleteRow(this)"><i class="fas fa-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Property">
+              <div style="display:flex; align-items:center; gap:0.75rem;">
+                <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?fm=webp&fit=crop&w=150&h=100&q=30" alt="" style="width:50px;height:40px;object-fit:cover;border-radius:4px;">
+                <span style="font-weight:500;">Waterfront Family Home</span>
+              </div>
+            </td>
+            <td data-label="Type">House</td>
+            <td data-label="Price" style="font-weight:600; color:var(--primary);">$875,000</td>
+            <td data-label="Status"><span class="status-pill status-pending">Pending</span></td>
+            <td data-label="Views">456</td>
+            <td data-label="Actions">
+              <div class="action-btns">
+                <a href="property.html" class="action-btn" style="background:var(--primary);"><i class="fas fa-eye"></i></a>
+                <a href="create-listing.html" class="action-btn" style="background:var(--warning);"><i class="fas fa-edit"></i></a>
+                <button class="action-btn" style="background:var(--danger);" onclick="deleteRow(this)"><i class="fas fa-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Property">
+              <div style="display:flex; align-items:center; gap:0.75rem;">
+                <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?fm=webp&fit=crop&w=150&h=100&q=30" alt="" style="width:50px;height:40px;object-fit:cover;border-radius:4px;">
+                <span style="font-weight:500;">Grand Estate with Pool</span>
+              </div>
+            </td>
+            <td data-label="Type">Villa</td>
+            <td data-label="Price" style="font-weight:600; color:var(--primary);">$2,400,000</td>
+            <td data-label="Status"><span class="status-pill status-active">Active</span></td>
+            <td data-label="Views">1,281</td>
+            <td data-label="Actions">
+              <div class="action-btns">
+                <a href="property.html" class="action-btn" style="background:var(--primary);"><i class="fas fa-eye"></i></a>
+                <a href="create-listing.html" class="action-btn" style="background:var(--warning);"><i class="fas fa-edit"></i></a>
+                <button class="action-btn" style="background:var(--danger);" onclick="deleteRow(this)"><i class="fas fa-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Property">
+              <div style="display:flex; align-items:center; gap:0.75rem;">
+                <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?fm=webp&fit=crop&w=150&h=100&q=30" alt="" style="width:50px;height:40px;object-fit:cover;border-radius:4px;">
+                <span style="font-weight:500;">Modern City Condo</span>
+              </div>
+            </td>
+            <td data-label="Type">Condo</td>
+            <td data-label="Price" style="font-weight:600; color:var(--primary);">$3,900/mo</td>
+            <td data-label="Status"><span class="status-pill status-inactive">Inactive</span></td>
+            <td data-label="Views">203</td>
+            <td data-label="Actions">
+              <div class="action-btns">
+                <a href="property.html" class="action-btn" style="background:var(--primary);"><i class="fas fa-eye"></i></a>
+                <a href="create-listing.html" class="action-btn" style="background:var(--warning);"><i class="fas fa-edit"></i></a>
+                <button class="action-btn" style="background:var(--danger);" onclick="deleteRow(this)"><i class="fas fa-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Recent Messages -->
+    <div style="background:white; padding:1.5rem; border-radius:var(--radius-lg); box-shadow:var(--shadow-sm);">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+        <h3>Recent Inquiries</h3>
+        <a href="#" style="color:var(--primary); font-size:0.875rem; font-weight:600;">View All</a>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:1.25rem;">
+        <div class="inquiry-card">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?fm=webp&fit=facearea&facepad=2&w=100&h=100&q=30" alt="" class="avatar">
+          <div class="inquiry-content">
+            <p style="font-weight:600;">Sarah Mitchell</p>
+            <p style="font-size:0.875rem; color:var(--text-muted);">I'm interested in the Modern Coastal Villa. Is it still available for viewing?</p>
+          </div>
+          <div class="inquiry-actions">
+            <span style="font-size:0.75rem; color:var(--text-muted);">2h ago</span>
+            <button class="btn btn-primary">Reply</button>
+          </div>
+        </div>
+        <div class="inquiry-card">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fm=webp&fit=facearea&facepad=2&w=100&h=100&q=30" alt="" class="avatar">
+          <div class="inquiry-content">
+            <p style="font-weight:600;">James Rodriguez</p>
+            <p style="font-size:0.875rem; color:var(--text-muted);">Can you provide more details about the Grand Estate with Pool?</p>
+          </div>
+          <div class="inquiry-actions">
+            <span style="font-size:0.75rem; color:var(--text-muted);">5h ago</span>
+            <button class="btn btn-primary">Reply</button>
+          </div>
+        </div>
+        <div class="inquiry-card">
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?fm=webp&fit=facearea&facepad=2&w=100&h=100&q=30" alt="" class="avatar">
+          <div class="inquiry-content">
+            <p style="font-weight:600;">Lisa Kim</p>
+            <p style="font-size:0.875rem; color:var(--text-muted);">Would you consider a lower monthly rate for a 12-month lease on the condo?</p>
+          </div>
+          <div class="inquiry-actions">
+            <span style="font-size:0.75rem; color:var(--text-muted);">1d ago</span>
+            <button class="btn btn-primary">Reply</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="js/script.js"></script>
+<style>
+@keyframes fadeOut { to { opacity:0; transform:translateX(20px); } }
+</style>
+</body>
+</html>
+
+
+
